@@ -1,0 +1,9 @@
+.panel {
+    margin: 0 auto;
+    background-color: var(--dcp-gray-color);
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    overflow-x: hidden;
+}

@@ -1,0 +1,32 @@
+@import url("@codecompanybrasil/discipline-core/dist/styles/discipline-core.min.css");
+
+/* TODO: Incluído apenas para compor durante o teste de roteamento, 
+ * remover assim que definir o conteúdo das páginas. */
+body {
+  background-color: var(--dcp-primary-color);
+}
+
+main {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+div#root {
+  height: inherit;
+}
+
+/* TODO: Remover após atualização do Discipline-core */
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+.dcp-icon-button .dcp-icon {
+  width: 32px;
+  height: 32px;
+}
+/* Fim do FIX */

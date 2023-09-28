@@ -1,0 +1,129 @@
+.divisor {
+    height: 2px;
+    width: 100%;
+    background-color: var(--dcp-black-color);
+}
+
+.alternative_area {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    margin: 20px 0;
+}
+
+.alternative {
+    margin-bottom: 5px;
+}
+
+.order {
+    width: 50px;
+    height: 50px;
+    background-color: var(--dcp-white-color);
+    border-radius: 50%;
+    display: flex;
+    user-select: none;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--dcp-black-color);
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.order.order_success,
+.radio_alternative.radio_alternative_success {
+    background-color: var(--dcp-success-color);
+    cursor: default;
+}
+
+.order.order_danger,
+.radio_alternative.radio_alternative_danger {
+    background-color: var(--dcp-danger-color);
+    cursor: default;
+}
+
+.header_content {
+    margin-bottom: var(--dcp-padding-lg);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    margin: var(--dcp-padding-lg);
+    text-align: center;
+    font-size: 2rem;
+}
+
+.text {
+    margin-bottom: var(--dcp-padding-lg);
+}
+
+.text h2 {
+    text-align: center;
+    margin-bottom: var(--dcp-padding-lg);
+}
+
+.caption {
+    font-style: italic;
+    text-align: center;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    margin-bottom: var(--dcp-padding-lg);
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+    .image,
+    .text {
+        width: 80%;
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+    .image,
+    .text {
+        width: 70%;
+    }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+
+    .image,
+    .text {
+        width: 50%;
+    }
+}
+
+.radio_alternative {
+    width: 25px;
+    height: 25px;
+    user-select: none;
+    display: inline-flex;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--dcp-white-color);
+    font-weight: bold;
+    font-size: 1.2em !important;
+    font-size: 15px;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.radio_alternative.check_alternative {
+    background-color: var(--dcp-accent-color);
+}
+
+.response {
+    font-weight: bolder;
+    font-size: 1.2em;
+    word-wrap: break-word;
+    hyphens: auto;
+}
