@@ -16,7 +16,7 @@ function AvaliationHeader({ correctionMode = false, title }: AvaliationHeaderPro
                         </label>
                     </div>
                     <div className="col">
-                        <input type="text" name="username" id="username" className={styles.text_input} />
+                        <input type="text" name="username" id="username" className="full-width" />
                     </div>
                 </div>
             )}
