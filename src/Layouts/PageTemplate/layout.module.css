@@ -1,9 +1,16 @@
 .panel {
     margin: 0 auto;
     background-color: var(--dcp-gray-color);
-    border-radius: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     position: relative;
     overflow-x: hidden;
 }
+
+.panel_inner {
+    padding: 20px;
+}
+
+@media (min-width: 576px) {
+    .panel {
+        border-radius: 10px;
+    }
+ }

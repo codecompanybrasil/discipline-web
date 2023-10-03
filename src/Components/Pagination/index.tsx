@@ -26,12 +26,14 @@ function PaginationButton({ isSelected, pageNumber, onClick }: PaginationButtonP
 }
 
 type PaginationProps = {
-    totalPages: number,
+    totalItems: number,
+    itemsPerPage?: number,
     onPaginate: (page: number) => void
 }
 
-function Pagination({ totalPages, onPaginate }: PaginationProps) {
+function Pagination({ totalItems, itemsPerPage = 10, onPaginate }: PaginationProps) {
     const [selectedPage, setSelectedPage] = useState<number>(1)
+    const [totalPages, setTotalPages] = useState<number>(1)
     const [firstPageStatus, setFirstPageStatus] = useState<boolean>()
     const [lastPageStatus, setLastPageStatus] = useState<boolean>()
 
@@ -41,10 +43,13 @@ function Pagination({ totalPages, onPaginate }: PaginationProps) {
     }
 
     useEffect(() => {
+        setTotalPages((totalItems % itemsPerPage) === 0 ? totalItems / itemsPerPage : Math.floor(totalItems / itemsPerPage) + 1)
+    }, [totalItems])
+
+    useEffect(() => {
         setFirstPageStatus((selectedPage === 1))
         setLastPageStatus((selectedPage === totalPages))
-
-    }, [selectedPage, totalPages])
+    }, [selectedPage, totalItems])
 
     const pageNumbers = [...Array(totalPages).keys()]
         .map((page: number) =>
