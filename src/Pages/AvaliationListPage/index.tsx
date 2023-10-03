@@ -6,7 +6,6 @@ import { DcpButton } from "@codecompanybrasil/discipline-core";
 import Header from "@/Layouts/Header"
 import ListItem from "@/Components/ListItem"
 import Pagination from "@/Components/Pagination"
-// import { Enem, Mit, Obmep } from "../../../Components/DcpIcons/Icon";
 
 // Local Components
 import AvaliationListHeader from "./Header"
@@ -29,7 +28,7 @@ function AvaliationListPage() {
     const [avaliacaoStyle, setAvaliacaoStyle] = useState(styles.avaliacao)
     const [filterStyle, setFilterStyle] = useState(styles.filter_area)
     const [resData, setResData] = useState<{ data: Avaliation[], total: number }>()
-    const [itemsPerPage, setItemsPerPage] = useState<number>(1)
+    const [itemsPerPage, setItemsPerPage] = useState<number>(10)
     const [loading, setLoading] = useState<boolean>(true)
     const [urlAPI, setUrlAPI] = useState<URL>(new URL(`${process.env.REACT_APP_API_URL}/avaliations?offset=0&limit=${itemsPerPage}`))
 
@@ -74,7 +73,8 @@ function AvaliationListPage() {
     }
 
     const updateList = (page: number) => {
-        urlAPI.searchParams.set("offset", String((page === 1) ? 0 : (itemsPerPage * (page - 1))))
+        const offset = (page === 1) ? 0 : (itemsPerPage * (page - 1))
+        urlAPI.searchParams.set("offset", String(offset))
         fetchingAPI()
     }
 
@@ -104,9 +104,10 @@ function AvaliationListPage() {
                             />
                         )))}
                     </div>
-                    {resData?.total && (resData.total > 1) &&
+                    {resData?.total && (resData.total > itemsPerPage) &&
                         <Pagination
-                            totalPages={resData?.total ?? 1}
+                            totalItems={resData?.total ?? 1}
+                            itemsPerPage={itemsPerPage}
                             onPaginate={updateList} />
                     }
                 </div>
