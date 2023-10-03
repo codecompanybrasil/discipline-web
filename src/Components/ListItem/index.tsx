@@ -1,17 +1,18 @@
 import { useState, useEffect, ReactNode, CSSProperties } from 'react';
 import { useNavigate } from "react-router-dom";
 
-// import { Discipline, Enem } from '../../../Components/DcpIcons/Icon';
 import { DcpIcon, DcpIconButton } from '@codecompanybrasil/discipline-core';
-// import Menu from '../../../Components/Menu/Menu';
+
+import Menu from '@/Components/Menu';
+import Image from '@/Components/Image';
 
 import styles from './component.module.css'
-import DisciplineLogoImg from '@/Assets/logo.png'
 
-type AvaliationListItemProps = {
+type ListItemProps = {
     hash: string,
     title: string,
     iconPath?: string,
+    iconAlt?: string,
     index: number
     link?: string,
     setActiveMenuIndex: (newCount: number | null) => void,
@@ -19,18 +20,7 @@ type AvaliationListItemProps = {
     activeMenuIndex: number | null
 }
 
-interface ListItemIconProps {
-    iconPath?: string
-    title: string
-}
-
-const ListItemIcon = ({ iconPath, title }: ListItemIconProps) => {
-    const icon = iconPath ? `http://api.discipline.app.br${iconPath}` : DisciplineLogoImg
-    const cssClass = (!iconPath) ? styles.item_icon : undefined
-    return <img className={cssClass} src={icon} alt={title} />
-}
-
-const AvaliationListItem = ({ hash, title, iconPath, link, setActiveMenuIndex, index, activeMenuIndex }: AvaliationListItemProps) => {
+const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, index, activeMenuIndex }: ListItemProps) => {
     const navigate = useNavigate();
 
     const [menuStyle, setMenuStyle] = useState<CSSProperties>({ visibility: "hidden" })
@@ -88,8 +78,8 @@ const AvaliationListItem = ({ hash, title, iconPath, link, setActiveMenuIndex, i
         <>
             <div className={styles.query_line} >
                 <a href={link} className={styles.query_inline}>
-                    <ListItemIcon iconPath={iconPath}
-                        title={`Logo da Prova - ${title}`} />
+                    <Image src={iconPath}
+                        alt={iconAlt} />
                     {title}
                 </a>
 
@@ -98,7 +88,7 @@ const AvaliationListItem = ({ hash, title, iconPath, link, setActiveMenuIndex, i
                         <DcpIcon.Menu />
                     </DcpIconButton>
                     <div style={menuStyle} >
-                        {/* <Menu options={menuOptions} /> */}
+                        <Menu options={menuOptions} />
                     </div>
                 </div>
             </div>
@@ -107,4 +97,4 @@ const AvaliationListItem = ({ hash, title, iconPath, link, setActiveMenuIndex, i
     )
 }
 
-export default AvaliationListItem
+export default ListItem

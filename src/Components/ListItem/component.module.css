@@ -32,11 +32,6 @@
     border-radius: 5px;
 }
 
-.item_icon {
-    padding: 10px;
-    background-color: var(--dcp-primary-color);
-}
-
 /* .query_line::after {
     content: '';
     width: 102%;

@@ -4,17 +4,17 @@ import { DcpButton } from "@codecompanybrasil/discipline-core";
 
 // General Components
 import Header from "@/Layouts/Header"
+import ListItem from "@/Components/ListItem"
 import Pagination from "@/Components/Pagination"
 // import { Enem, Mit, Obmep } from "../../../Components/DcpIcons/Icon";
 
 // Local Components
 import AvaliationListHeader from "./Header"
-import AvaliationListItem from "./ListItem"
 import Filters from "./Filters";
 
 // Styles and Images
-import styles from './page.module.css'
 import PageTemplate from "@/Layouts/PageTemplate";
+import styles from './page.module.css'
 
 // Types and Interfaces
 export interface Avaliation {
@@ -91,13 +91,14 @@ function AvaliationListPage() {
                         {resData?.total === 0 ? (
                             <p className={styles.sem_resultados}>Sem resultados</p>
                         ) : (resData?.data.map((item, index) => (
-                            <AvaliationListItem
+                            <ListItem
                                 key={index}
                                 index={index}
                                 hash={item.hash}
                                 link={`/avaliacoes/${item.hash}`}
                                 title={item.title}
                                 iconPath={item.icon}
+                                iconAlt={`Logo da Prova - ${item.title}`}
                                 setActiveMenuIndex={handleSetActiveMenuIndex}
                                 activeMenuIndex={activeMenuIndex}
                             />
