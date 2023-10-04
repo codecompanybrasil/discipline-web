@@ -14,7 +14,7 @@ PageTemplate.Panel = (props: any) => {
     
     return (
         <div className="row">
-            <div className={[styles.panel, colSizes].join(" ")}>
+            <div className={[styles.panel, colSizes, "pt-1 pb-3"].join(" ")}>
                 <div className={styles.panel_inner}>
                     {props.children}
                 </div>

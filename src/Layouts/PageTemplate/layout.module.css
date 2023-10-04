@@ -1,14 +1,8 @@
 .panel {
     margin: 0 auto;
-    margin-top: 20px;
     background-color: var(--dcp-gray-color);
     position: relative;
     overflow-x: hidden;
-}
-
-.panel_inner {
-    /* padding: 20px; */
-    padding: 5px;
 }
 
 @media (min-width: 576px) {
