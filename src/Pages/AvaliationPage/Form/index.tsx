@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { DcpButton, DcpIcon } from '@codecompanybrasil/discipline-core';
 // import { DisciplineFileData, DcpQAnswer } from '@/_types/Questions/Questions';
 
@@ -10,22 +10,43 @@ import styles from './component.module.css'
 
 type AvaliacaoPageProps = {
     handleBack: () => void,
-    // FORCE ANY
-    handleResultsQuestions: (result: any) => void,
+    handleResult: (result: any) => void,
     handleSetPage: (page: string) => void,
-    // FORCE ANY
+    correctionMode: boolean
     disciplineFileData: any
+    userAnswers: any[]
 }
 
-function AvaliationForm({ handleBack, handleResultsQuestions, handleSetPage, disciplineFileData }: AvaliacaoPageProps) {
+function AvaliationForm({
+    handleBack,
+    handleResult,
+    handleSetPage,
+    correctionMode = false,
+    disciplineFileData,
+    userAnswers
+}: AvaliacaoPageProps) {
 
     return (
         <>
-            <AvaliationHeader title={disciplineFileData?.title} />
-            {/* FORCE ANY */}
-            {disciplineFileData?.sections[0].items.map((item: any, index: number) => (
-                <Question key={index} question={item} indexQuestion={index} handleResult={handleResultsQuestions} />
-            ))
+            {
+                disciplineFileData?.sections[0].items.map((item: any, index: number) => {
+                    let markedAlternative = undefined
+
+                    if (userAnswers.length > 0 && item.type === "question") {
+                        const userAnswer = userAnswers.find(answer => answer.q_hash === item.hash);
+                        if (userAnswer) markedAlternative = userAnswer.answer
+                    }
+
+                    return (
+                        <Question
+                            key={index}
+                            question={item}
+                            indexQuestion={index}
+                            correctionMode={correctionMode}
+                            markedAlternative={markedAlternative}
+                            handleResult={handleResult} />
+                    )
+                })
             }
             <div className="row my-3">
                 <div className="col-12 col-sm-6 col-md-4 offset-md-2 d-flex justify-content-center">

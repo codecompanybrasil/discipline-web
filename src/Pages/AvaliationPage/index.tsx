@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 
 import { DcpButton } from "@codecompanybrasil/discipline-core";
-// import { DcpQuestion, DcpQAnswer, DisciplineFileData } from "@/_types/Questions/Questions";
 
-import CorrectionModule from './Correction';
+import AvaliationHeader from "./Header";
 import AvaliationForm from './Form';
 import ResultPanel from './Result';
+
 import PageTemplate from "@/Layouts/PageTemplate";
 
 function AvaliationPage() {
@@ -14,10 +14,9 @@ function AvaliationPage() {
     const { hash } = useParams();
     let data = useLoaderData();
 
-    const [avaliationData, setDisciplineData] = useState<any>()
-    // const [avaliationData, setDisciplineData] = useState<DisciplineFileData>()
     const [page, setPage] = useState<string>("avaliacao")
-    // const [resultsQuestions, setResultsQuestions] = useState<DcpQAnswer[]>([])
+    const [correctionMode, setCorrectionMode] = useState<boolean>(false)
+    const [avaliationData, setDisciplineData] = useState<any>()
     const [resultsQuestions, setResultsQuestions] = useState<any[]>([])
 
     let numQuestoesNaoRespondidas = useRef<number>(0)
@@ -39,7 +38,6 @@ function AvaliationPage() {
             }
 
             resultsQuestions.forEach(userAnswer => {
-                // FORCE ANY
                 const correctQuestion = questions?.find((question: any) =>
                     question.hash === userAnswer.q_hash &&
                     question.correct_answer === userAnswer.answer)
@@ -51,11 +49,16 @@ function AvaliationPage() {
     }, [resultsQuestions])
 
     const handleSetPage = (page: string) => {
-        setPage(page)
+        if (page === "correcao") {
+            setPage("avaliacao");
+            setCorrectionMode(true);
+        } else {
+            setPage(page);
+            setCorrectionMode(false);
+        }
     }
-    
-    // FORCE ANY
-    const handleResultsQuestions = (result: any) => {
+
+    const handleResult = (result: any) => {
         setResultsQuestions(previousState => {
             let newState = [...previousState]
 
@@ -76,40 +79,35 @@ function AvaliationPage() {
             return newState
         })
     }
-    
-    let pageElem
-
-    if (avaliationData) {
-        switch (page) {
-            case 'avaliacao':
-                pageElem = <AvaliationForm
-                    handleBack={() => navigate(-1)}
-                    handleResultsQuestions={handleResultsQuestions}
-                    handleSetPage={handleSetPage}
-                    disciplineFileData={avaliationData} />
-                break;
-            case 'correcao':
-                pageElem = <CorrectionModule
-                    setPage={handleSetPage}
-                    questions={avaliationData?.sections[0]?.items}
-                    userAnswers={resultsQuestions} />
-                break;
-            case 'resultado':
-                pageElem = <ResultPanel
-                    numberCorrect={numQuestoesCertas.current}
-                    numberQuestions={avaliationData?.sections[0]?.items?.length}
-                    numberNonResponse={numQuestoesNaoRespondidas.current}
-                    setPage={handleSetPage}
-                    resultQuestion={resultsQuestions} />
-                break;
-        }
-    }
 
     return (
         <PageTemplate>
             <PageTemplate.Header title="Avaliação" />
             <PageTemplate.Panel>
-                {pageElem}
+                {page !== "resultado" && <AvaliationHeader title={avaliationData?.title} correctionMode={page !== 'avaliacao'} />}
+
+                {avaliationData && (
+                    <>
+                        <div style={{ display: (page === "resultado") ? "none" : "block" }}>
+                            <AvaliationForm
+                                handleBack={() => navigate(-1)}
+                                handleResult={handleResult}
+                                handleSetPage={handleSetPage}
+                                correctionMode={correctionMode}
+                                disciplineFileData={avaliationData}
+                                userAnswers={resultsQuestions} />
+                        </div>
+
+                        <div style={{ display: (page !== "resultado") ? "none" : "block" }}>
+                            <ResultPanel
+                                numberCorrect={numQuestoesCertas.current}
+                                numberQuestions={avaliationData?.sections[0]?.items?.length}
+                                numberNonResponse={numQuestoesNaoRespondidas.current}
+                                setPage={handleSetPage}
+                                resultQuestion={resultsQuestions} />
+                        </div>
+                    </>
+                )}
             </PageTemplate.Panel>
         </PageTemplate>
     )

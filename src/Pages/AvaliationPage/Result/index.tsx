@@ -1,17 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { DcpButton, DcpIcon } from '@codecompanybrasil/discipline-core'
-
-import Header from '@/Layouts/Header'
-
-// import { DcpQuestionByHash } from '@/_types/API/API_types'
-// import { DcpQAnswer } from '@/_types/Questions/Questions'
 
 import styles from './component.module.css'
 import teacherIcon from '@codecompanybrasil/discipline-core/dist/assets/icons/white/icons8-teacher-100.png'
-// import enem_lg_logo from '../../../../../assets/Icons/enem_lg_logo.png'
 
-// FORCE ANY
-// resultQuestion: DcpQAnswer[],
 type ResultProps = {
     numberQuestions: number,
     numberCorrect: number,
