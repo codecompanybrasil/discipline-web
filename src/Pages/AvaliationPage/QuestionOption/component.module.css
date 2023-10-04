@@ -39,6 +39,10 @@
     cursor: default;
 }
 
+.image_option {
+    margin-left: 35px;
+}
+
 .response {
     font-weight: bolder;
     font-size: 1.2em;

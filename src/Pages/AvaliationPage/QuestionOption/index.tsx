@@ -15,12 +15,15 @@ export interface listAlternativeInterface {
     markedAlternative: string
 }
 
-// FORCE ANY
-// question: DcpQuestionAndQuestionGroup,
-// handleResult?: (result: DcpQAnswer) => void
-type QuestionProps = {
+interface QuestionOptionDataProps {
+    hash: string,
+    option_text?: string,
+    image?: any
+}
+
+interface QuestionOptionProps {
     index: number,
-    data: { hash: string, option_text: string },
+    data: QuestionOptionDataProps,
     correct_answer: string,
     correctionMode?: boolean,
     markedAlternative?: string,
@@ -33,7 +36,7 @@ function QuestionOption({
     correct_answer,
     correctionMode = false,
     markedAlternative,
-    onSelect }: QuestionProps) {
+    onSelect }: QuestionOptionProps) {
     const optionLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     const [selected, setSelected] = useState(false)
@@ -45,7 +48,7 @@ function QuestionOption({
     }
 
     useEffect(() => {
-        if(correctionMode) {
+        if (correctionMode) {
             if (markedAlternative) {
                 setCorrect(data.hash === correct_answer)
                 setWrong(data.hash == markedAlternative && data.hash !== correct_answer)
@@ -74,7 +77,18 @@ function QuestionOption({
                 {optionLetters[index]}
             </button>
 
-            <span className={styles.response}>{data.option_text}</span>
+            {data.image && (
+                <div className={styles.image_option}>
+                    <img className={styles.image} src={data.image.image_source} alt={data.image.caption ?? ""}
+                        width="0"
+                        height="0" />
+                    {data.image.caption && (
+                        <p className={styles.caption} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.image.caption) }}></p>
+                    )}
+                </div>
+            )}
+
+            {data.option_text && <span className={styles.response}>{data.option_text}</span>}
         </div>
     )
 }
