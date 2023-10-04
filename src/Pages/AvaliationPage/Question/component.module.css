@@ -127,3 +127,7 @@
     word-wrap: break-word;
     hyphens: auto;
 }
+
+.image_option {
+    margin-left: 35px;
+}

@@ -33,6 +33,13 @@ type QuestionHeaderItemProps = {
     content: any
 }
 
+interface DcpQImage {
+    title?: string
+    image_source: string
+    caption?: string
+}
+
+
 function QuestionHeaderItem({ content }: QuestionHeaderItemProps) {
     const title = ('title' in content && content.title) ? (
         <h3 className={styles.title}>{content.title}</h3>
@@ -147,7 +154,26 @@ function Question({
                                             ) : (
                                                 <div className={alternativesState[index]} onClick={() => OnClickAlternative(index, option.hash)}>{alfabeto[index]}</div>
                                             )}
-                                            <span className={styles.response} >{option.option_text}</span>
+
+                                            {option.image && (
+                                                <>
+                                                    {option.image.map((item: DcpQImage) => (
+                                                        <div className={styles.image_option}>
+                                                            <img className={styles.image} src={item.image_source} alt={item.caption ?? ""}
+                                                            width="0"
+                                                            height="0"
+                                                            sizes="100vw" />
+                                                            {item.caption && (
+                                                                <p className={styles.caption} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.caption) }}></p>
+                                                            )}
+                                                        </div>
+                                                    ))}
+                                                </>
+                                            )}
+
+                                            {option.option_text && (
+                                                <span className={styles.response} >{option.option_text}</span>
+                                            )}
                                         </div>
                                     </div>
                                 ))}
