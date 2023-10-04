@@ -5,6 +5,10 @@
     overflow-x: hidden;
 }
 
+.panel_inner {
+    padding: 20px;
+}
+
 @media (min-width: 576px) {
     .panel {
         border-radius: 10px;
