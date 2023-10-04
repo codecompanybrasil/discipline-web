@@ -1,23 +1,14 @@
 import { useState } from "react";
 import DOMPurify from 'dompurify'
 
-// import {
-//     DcpQuestionAndQuestionGroup,
-//     DcpQImage,
-//     DcpQText,
-//     DcpQStatement,
-//     DcpQAnswer
-// } from "@/_types/Questions/Questions";
+import QuestionOption from "../QuestionOption";
 
 import styles from './component.module.css'
-import QuestionOption from "../QuestionOption";
 
 export interface listAlternativeInterface {
     markedAlternative: string
 }
 
-// FORCE ANY
-// content: (DcpQImage | DcpQText | DcpQStatement)
 type QuestionHeaderItemProps = {
     content: any
 }
@@ -68,9 +59,6 @@ function getCorrectionColor(correctAnswer: string, userAnswer: string) {
         : styles.order_danger
 }
 
-// FORCE ANY
-// question: DcpQuestionAndQuestionGroup,
-// handleResult?: (result: DcpQAnswer) => void
 type QuestionProps = {
     indexQuestion: number,
     question: any,
@@ -126,7 +114,6 @@ function Question({
                                     correctionMode={correctionMode}
                                     markedAlternative={markedAlternative}
                                     onSelect={sendAnswerUpdate} />
-
                             ))
                         )
                     }
