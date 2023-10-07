@@ -54,6 +54,12 @@
     text-align: center;
 }
 
+.statement_annulled {
+    margin-top: var(--dcp-margin-lg);
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
 .image {
     width: 100%;
     height: auto;
