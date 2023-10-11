@@ -1,14 +1,12 @@
 // Libraries
-import { useState, CSSProperties, ReactNode, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { DcpButton } from "@codecompanybrasil/discipline-core";
 
 // General Components
-import Header from "@/Layouts/Header"
 import ListItem from "@/Components/ListItem"
 import Pagination from "@/Components/Pagination"
 
 // Local Components
-import AvaliationListHeader from "./Header"
 import Filters from "./Filters";
 
 // Styles and Images
@@ -25,8 +23,6 @@ export interface Avaliation {
 
 function AvaliationListPage() {
     const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null) //Váriavel que diz qual Query tem o menu aberto
-    const [avaliacaoStyle, setAvaliacaoStyle] = useState(styles.avaliacao)
-    const [filterStyle, setFilterStyle] = useState(styles.filter_area)
     const [resData, setResData] = useState<{ data: Avaliation[], total: number }>()
     const [itemsPerPage, setItemsPerPage] = useState<number>(10)
     const [loading, setLoading] = useState<boolean>(true)
@@ -52,16 +48,6 @@ function AvaliationListPage() {
         console.log("Data changed", resData)
     }, [resData])
 
-    const onMenuClick = () => {
-        if (avaliacaoStyle === styles.avaliacao) { //Deve abrir o filtro
-            setAvaliacaoStyle(`${styles.avaliacao} ${styles.filter_open}`)
-            setFilterStyle(`${styles.filter_area} ${styles.filter_area_opened}`)
-        } else { // Deve fechar o filtro
-            setAvaliacaoStyle(styles.avaliacao)
-            setFilterStyle(`${styles.filter_area} ${styles.filter_area_closed}`)
-        }
-    }
-
     const handleSetActiveMenuIndex = (menu: number | null) => {
         setActiveMenuIndex(menu)
     }
@@ -82,11 +68,8 @@ function AvaliationListPage() {
         <PageTemplate>
             <PageTemplate.Header title="Avaliações" />
             <PageTemplate.Panel>
-                <div className={filterStyle}>
-                    <Filters onMenuClick={onMenuClick} handleUrlAPI={handleUrlAPI} urlAPI={urlAPI} />
-                </div>
-                <div className={avaliacaoStyle}>
-                    <AvaliationListHeader onClick={onMenuClick} />
+                <div className={styles.avaliacao}>
+                    {/* <Filters handleUrlAPI={handleUrlAPI} urlAPI={urlAPI} /> */}
                     <div className={styles.querys_avaliacao} >
                         {resData?.total === 0 ? (
                             <p className={styles.sem_resultados}>Sem resultados</p>

@@ -1,16 +1,71 @@
-import styles from './component.module.css'
 import { useState, useEffect, CSSProperties, MouseEventHandler, ChangeEvent } from 'react'
 
-type QueryFiltroProps = {
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
+
+import styles from './component.module.css'
+
+dayjs.locale('pt-br')
+
+interface InputDateProps {
+    name: string,
+    placeholder?: string,
+    onChange: (year: string) => void
+}
+
+const InputDate = ({ name, placeholder, onChange }: InputDateProps) => {
+    const [date, setDate] = useState<string>("");
+
+    useEffect(() => {
+        
+        onChange(date)
+    }, [date])
+
+    return (
+        // <NativeDatepicker value={date} onChange={(newValue) => setDate(newValue)} />
+        <input type="text"
+            name={name}
+            id={name}
+            value={date}
+            onChange={(event) => setDate(dayjs(event.target.value).format('YYYY'))}
+            placeholder={placeholder} />
+    );
+}
+
+interface InputSearchProps {
+    id: string,
+    placeholder?: string,
+    onChange: (data: string) => void
+}
+
+const InputSearch = ({ id, placeholder, onChange }: InputSearchProps) => {
+    const [searchData, setSearchData] = useState<string>("");
+
+    useEffect(() => {
+        console.log(searchData)
+        onChange(searchData)
+    }, [searchData])
+
+    return (
+        <input type="search"
+            id={id}
+            className='full-width'
+            value={searchData}
+            onChange={(event) => setSearchData(event.target.value)}
+            placeholder={placeholder}
+            maxLength={150} />
+    )
+}
+
+interface QueryFiltroProps {
     title: string,
-    typeInput: "data" | "search" | "status",
+    typeInput: "text" | "select" | "search" | "date",
+    placeholder?: string,
     handleData: (data: any) => void
 }
 
-const QueryFilter = ({ title, typeInput, handleData }: QueryFiltroProps) => {
-    const [yearOptionsStyle, setYearOptionsStyle] = useState<CSSProperties>({ display: "none" })
+const QueryFilter = ({ title, typeInput, placeholder, handleData }: QueryFiltroProps) => {
     const [yearInputValue, setYearInputValue] = useState<string>("")
-    const [statusOptionsStyle, setStatusOptionsStyle] = useState<CSSProperties>({ display: "none" })
     const [statusInputValue, setStatusInputValue] = useState<string>("")
     const [searchInputValue, setSearchInputValue] = useState<string>("")
     const actualYear = new Date().getFullYear()
@@ -34,70 +89,69 @@ const QueryFilter = ({ title, typeInput, handleData }: QueryFiltroProps) => {
         yearsList.push(i)
     }
 
-    const onYearInputClick = () => {
-        setYearOptionsStyle({ display: "block" })
-    }
+    // const onYearOptionsClick: MouseEventHandler<HTMLUListElement> = (e) => {
+    //     const target = e.target as HTMLElement
+    //     if (target && target.textContent) {
+    //         if (target.textContent === "Vazio") {
+    //             setYearInputValue("")
+    //         } else {
+    //             setYearInputValue(target.textContent)
+    //         }
+    //         setYearOptionsStyle({ display: "none" })
+    //     }
+    // }
 
-    const onYearOptionsClick: MouseEventHandler<HTMLUListElement> = (e) => {
-        const target = e.target as HTMLElement
-        if (target && target.textContent) {
-            if (target.textContent === "Vazio") {
-                setYearInputValue("")
-            } else {
-                setYearInputValue(target.textContent)
-            }
-            setYearOptionsStyle({ display: "none" })
-        }
-    }
+    // const onStatusInputClick = () => {
+    //     setStatusOptionsStyle({ display: "block" })
+    // }
 
-    const onStatusInputClick = () => {
-        setStatusOptionsStyle({ display: "block" })
-    }
-
-    const onStatusOptionsClick: MouseEventHandler<HTMLUListElement> = (e) => {
-        const target = e.target as HTMLElement
-        if (target && target.textContent) {
-            if (target.textContent === "Vazio") {
-                setStatusInputValue("")
-            } else {
-                setStatusInputValue(target.textContent)
-            }
-            setStatusOptionsStyle({ display: "none" })
-        }
-    }
-
-    const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setSearchInputValue(event.target.value)
-    }
+    // const onStatusOptionsClick: MouseEventHandler<HTMLUListElement> = (e) => {
+    //     const target = e.target as HTMLElement
+    //     if (target && target.textContent) {
+    //         if (target.textContent === "Vazio") {
+    //             setStatusInputValue("")
+    //         } else {
+    //             setStatusInputValue(target.textContent)
+    //         }
+    //         setStatusOptionsStyle({ display: "none" })
+    //     }
+    // }
 
     return (
         <div className={styles.query_filtro} >
-            <h2>{title}</h2>
-            {typeInput === "data" ? (
-                <div className={styles.input_dropdown} >
-                    <input type="text" readOnly onClick={onYearInputClick} value={yearInputValue} />
-                    <ul className={styles.input_options} style={yearOptionsStyle} onClick={onYearOptionsClick}>
-                        <li>Vazio</li>
-                        {yearsList.map((year) => (
-                            <li key={year}>{year}</li>
-                        ))}
-                    </ul>
-                </div>
-            ) : typeInput === "search" ? (
-                <div>
-                    <input type="search" value={searchInputValue} onChange={handleSearchInputChange} maxLength={150} />
-                </div>
-            ) : typeInput === "status" ? (
-                <div className={styles.input_dropdown} >
-                    <input type="text" readOnly value={statusInputValue} onClick={onStatusInputClick} />
-                    <ul className={styles.input_options} style={statusOptionsStyle} onClick={onStatusOptionsClick}>
-                        <li>Vazio</li>
-                        <li>Feito</li>
-                        <li>Não feito</li>
-                    </ul>
-                </div>
-            ) : (
-                <></>
+            <label htmlFor={title}>{title}</label>
+
+            {typeInput === "search" && (
+                <InputSearch id={title}
+                    placeholder={placeholder}
+                    onChange={(data: any) => setSearchInputValue(data)}
+                />
+            )}
+
+            {typeInput === "select" && (
+                <select name={title} id={title}>
+                    {yearsList.map((year) => (
+                        <option key={year} value={year}>{year}</option>
+                    ))}
+                </select>
+
+                // <div className={styles.input_dropdown} >
+                //     <input type="text" id={title} readOnly onClick={onYearInputClick} value={yearInputValue} placeholder={placeholder} />
+                //     <ul className={styles.input_options} style={yearOptionsStyle} onClick={onYearOptionsClick}>
+                //         <li>Vazio</li>
+                //         {yearsList.map((year) => (
+                //             <li key={year}>{year}</li>
+                //         ))}
+                //     </ul>
+                // </div>
+            )}
+
+            {typeInput === "date" && (
+                <InputDate
+                    name={title}
+                    placeholder="Ano"
+                    onChange={(year: any) => setYearInputValue(year)}
+                />
             )}
         </div>
     )

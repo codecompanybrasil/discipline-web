@@ -7,14 +7,14 @@ import QueryFilter from "./QueryFilter"
 import styles from './component.module.css'
 
 type FilterProps = {
-    onMenuClick: () => void,
     handleUrlAPI: (url: URL) => void,
     urlAPI: URL
 }
 
-const Filters = ({ onMenuClick, handleUrlAPI, urlAPI }: FilterProps) => {
+const Filters = ({ handleUrlAPI, urlAPI }: FilterProps) => {
     const [searchData, setSearchData] = useState<string>("")
     const [anoData, setAnoData] = useState<number>(0)
+    const [isOpened, setIsOpened] = useState<boolean>(false)
     // const [statusData, setStatusData] = useState<boolean>()
 
     useEffect(() => {
@@ -51,30 +51,27 @@ const Filters = ({ onMenuClick, handleUrlAPI, urlAPI }: FilterProps) => {
     //     setStatusData(d)
     // }
 
-
     return (
-        <div className="container">
-            <div className="row gx-1">
-                <div className="col">
-                    <div className="d-flex align-items-center">
-                        <DcpIconButton className={styles.filter_btn} onClick={onMenuClick}>
+        <header className={styles.header}>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <DcpIconButton href='/' onClick={() => setIsOpened((prev) => !prev)}>
                             <img className="dcp-icon" src={filterImage} alt="Filtro" />
                         </DcpIconButton>
-                        <h2 className={styles.title_filtro} >Filtros</h2>
+                    </div>
+                </div>
+                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3"
+                    style={{ display: (isOpened) ? 'block' : 'none' }}>
+                    <div className="col">
+                        <QueryFilter title="Pesquisar" typeInput="search" placeholder="Pesquisar..." handleData={handleSearchData} />
+                    </div>
+                    <div className="col">
+                        <QueryFilter title="Ano" typeInput="date" handleData={handleAnoData} />
                     </div>
                 </div>
             </div>
-            <div className="row">
-                <div className="col">
-                    <QueryFilter title="Pesquisar" typeInput="search" handleData={handleSearchData} />
-                </div>
-            </div>
-            <div className="row">
-                <div className="col">
-                    <QueryFilter title="Ano" typeInput="data" handleData={handleAnoData} />
-                </div>
-            </div>
-        </div>
+        </header >
     )
 }
 

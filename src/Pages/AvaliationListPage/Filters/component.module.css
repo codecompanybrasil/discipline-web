@@ -1,18 +1,25 @@
+.header {
+    display: flex;
+    margin-top: -20px;
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+    background-color: var(--dcp-heavy-gray-color);
+}
+
+.query_filtro {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
 .filter_btn {
     padding-left: 0;
 }
 
 .title_filtro {
     font-size: 2em;
-}
-
-.query_filtro {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.query_filtro h3 {
-    font-weight: bold;
 }
 
 .input_options {

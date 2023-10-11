@@ -18,6 +18,10 @@ div#root {
 
 /* TODO: Remover após atualização do Discipline-core */
 
+:root {
+  --dcp-heavy-gray-color: #929292;
+}
+
 .dcp-icon-button .dcp-icon {
   width: 32px;
   height: 32px;
