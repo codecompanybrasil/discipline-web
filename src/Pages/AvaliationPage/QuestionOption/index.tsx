@@ -51,7 +51,7 @@ function QuestionOption({
         if (correctionMode) {
             if (markedAlternative) {
                 setCorrect(data.hash === correct_answer)
-                setWrong(data.hash == markedAlternative && data.hash !== correct_answer)
+                setWrong(data.hash === markedAlternative && data.hash !== correct_answer)
             } else {
                 setCorrect(false)
                 setWrong(false)
