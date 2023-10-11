@@ -64,31 +64,33 @@ function QuestionOption({
     }, [markedAlternative, correctionMode])
 
     return (
-        <div className={styles.alternative}>
-            <button type="button"
-                className={[
-                    styles.radio_alternative,
-                    selected ? styles.selected : undefined,
-                    correct ? styles.correct : undefined,
-                    wrong ? styles.wrong : undefined
-                ].join(" ")}
-                onClick={() => toggleSelect()}
-                disabled={correctionMode}>
-                {optionLetters[index]}
-            </button>
+        <div className="row mb-2">
+            <div className="col-auto">
+                <button type="button"
+                    className={[
+                        styles.radio_alternative,
+                        selected ? styles.selected : undefined,
+                        correct ? styles.correct : undefined,
+                        wrong ? styles.wrong : undefined
+                    ].join(" ")}
+                    onClick={() => toggleSelect()}
+                    disabled={correctionMode}>
+                    {optionLetters[index]}
+                </button>
+            </div>
 
-            {data.image && (
-                <div className={styles.image_option}>
-                    <img className={styles.image} src={data.image.image_source} alt={data.image.caption ?? ""}
-                        width="0"
-                        height="0" />
-                    {data.image.caption && (
-                        <p className={styles.caption} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.image.caption) }}></p>
-                    )}
-                </div>
-            )}
+            <div className="col">
+                {data.image && (
+                    <>
+                        <img className={styles.image} src={data.image.image_source} alt={data.image.caption ?? ""} />
+                        {data.image.caption && (
+                            <p className={styles.caption} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.image.caption) }}></p>
+                        )}
+                    </>
+                )}
 
-            {data.option_text && <span className={styles.response}>{data.option_text}</span>}
+                {data.option_text && <span className={styles.response}>{data.option_text}</span>}
+            </div>
         </div>
     )
 }

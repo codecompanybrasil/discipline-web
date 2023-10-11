@@ -19,9 +19,7 @@ function QuestionHeaderItem({ content }: QuestionHeaderItemProps) {
     ) : undefined
 
     const image = ('image_source' in content && content.image_source) ? (
-        <img className={styles.image} src={content.image_source} alt={content.caption ?? ""}
-            width="0"
-            height="0" />
+        <img className={styles.image} src={content.image_source} alt={content.caption ?? ""} />
     ) : undefined
 
     const text = ('snippet' in content && content.snippet) ? (
@@ -96,36 +94,36 @@ function Question({
             <div className={"col-12 mt-2 mt-md-0 col-md"} >
                 {question.is_annulled ? (
                     <>
-                        <div className={styles.header_area} style={{marginBottom: "30px"}}>
+                        <div className={styles.header_area} style={{ marginBottom: "30px" }}>
                             <p className={styles.statement_annulled} >Questão Anulada</p>
                         </div>
                     </>
                 ) : (
                     <>
-                    <div className={styles.header_area}>
-                        {/* FORCE ANY */}
-                        {(question.header && question.header.length > 0) &&
-                            question.header.map((item: any, index: number) => (
-                                <QuestionHeaderItem key={index} content={item} />
-                            ))}
-                    </div>
+                        <div className={styles.header_area}>
+                            {/* FORCE ANY */}
+                            {(question.header && question.header.length > 0) &&
+                                question.header.map((item: any, index: number) => (
+                                    <QuestionHeaderItem key={index} content={item} />
+                                ))}
+                        </div>
 
-                    <div className="my-3">
-                        {
-                            (question.question_type === "radio") && (question.options.length > 0) && (
-                                question.options.map((option: any, index: number) => (
-                                    <QuestionOption
-                                        key={index}
-                                        index={index}
-                                        data={option}
-                                        correct_answer={question.correct_answer}
-                                        correctionMode={correctionMode}
-                                        markedAlternative={markedAlternative}
-                                        onSelect={sendAnswerUpdate} />
-                                ))
-                            )
-                        }
-                    </div>
+                        <div className="mt-3">
+                            {
+                                (question.question_type === "radio") && (question.options.length > 0) && (
+                                    question.options.map((option: any, index: number) => (
+                                        <QuestionOption
+                                            key={index}
+                                            index={index}
+                                            data={option}
+                                            correct_answer={question.correct_answer}
+                                            correctionMode={correctionMode}
+                                            markedAlternative={markedAlternative}
+                                            onSelect={sendAnswerUpdate} />
+                                    ))
+                                )
+                            }
+                        </div>
                     </>
                 )}
             </div>
