@@ -4,7 +4,7 @@ import Header from "../Header"
 import styles from './layout.module.css';
 
 const PageTemplate = ({ children }: React.PropsWithChildren) => (
-    <div className="container">{children}</div>
+    <div className={["container", styles.layout_container].join(" ")}>{children}</div>
 )
 
 PageTemplate.Header = (props: any) => <Header title={props.title} />
