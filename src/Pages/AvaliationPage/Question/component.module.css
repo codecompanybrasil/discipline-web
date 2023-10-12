@@ -41,6 +41,7 @@
 }
 
 .text {
+    text-align: justify;
     margin-bottom: var(--dcp-padding-lg);
 }
 
@@ -51,7 +52,7 @@
 
 .caption {
     font-style: italic;
-    text-align: center;
+    text-align: right;
 }
 
 .statement_annulled {
@@ -70,7 +71,8 @@
 @media (min-width: 992px) {
 
     .image,
-    .text {
+    .text,
+    .caption {
         width: 80%;
     }
 }
@@ -79,7 +81,8 @@
 @media (min-width: 1200px) {
 
     .image,
-    .text {
+    .text,
+    .caption {
         width: 70%;
     }
 }

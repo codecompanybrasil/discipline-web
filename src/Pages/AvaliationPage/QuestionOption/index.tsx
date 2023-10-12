@@ -64,7 +64,7 @@ function QuestionOption({
     }, [markedAlternative, correctionMode])
 
     return (
-        <div className="row mb-2">
+        <div className="row gx-2 mb-3">
             <div className="col-auto">
                 <button type="button"
                     className={[

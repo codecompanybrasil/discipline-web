@@ -22,7 +22,7 @@ function ResultPanel({ numberCorrect, numberQuestions, setPage, numberNonRespons
 
                 <div className="col">
                     <div className="description_area">
-                        {numberNonResponse == numberQuestions ? (
+                        {numberNonResponse === numberQuestions ? (
                             <h2 className="description_title">Nenhuma questão foi respondida</h2>
                         ) : numberNonResponse ? (
                             <>
