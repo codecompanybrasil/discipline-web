@@ -28,7 +28,7 @@
 }
 
 .header_content {
-    margin-bottom: var(--dcp-padding-lg);
+    margin: var(--dcp-padding-lg);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -53,6 +53,7 @@
 .caption {
     font-style: italic;
     text-align: right;
+    margin-bottom: var(--dcp-padding-lg);
 }
 
 .statement_annulled {
