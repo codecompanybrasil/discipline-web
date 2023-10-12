@@ -19,7 +19,7 @@ export default createBrowserRouter([
         element: <AvaliationPage />,
         loader: async ({ request, params }) => {
             let data = await fetch(
-                `http://api.discipline.app.br/avaliations/${params.hash}/export`,
+                `${process.env.REACT_APP_API_URL}/avaliations/${params.hash}/export`,
                 { signal: request.signal }
             ).then(async (response: any) => {
                 if (response.ok) {
@@ -35,7 +35,7 @@ export default createBrowserRouter([
         element: <AvaliationDetailsPage />,
         loader: async ({ request, params }) => {
             let data = await fetch(
-                `http://api.discipline.app.br/avaliations/${params.hash}`,
+                `${process.env.REACT_APP_API_URL}/avaliations/${params.hash}`,
                 { signal: request.signal }
             ).then(async (response: any) => {
                 if (response.ok) {
