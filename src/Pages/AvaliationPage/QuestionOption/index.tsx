@@ -89,7 +89,9 @@ function QuestionOption({
                     </>
                 )}
 
-                {data.option_text && <span className={styles.response}>{data.option_text}</span>}
+                {data.option_text && (
+                    <span className={styles.response} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(data.option_text) }}></span>
+                )}
             </div>
         </div>
     )
