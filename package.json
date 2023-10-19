@@ -1,7 +1,34 @@
 {
   "name": "discipline-web",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.0.1",
+  "private": false,
+  "description": "Sistema Educacional Online para Aplicação de Provas",
+  "license": "MIT",
+  "author": {
+    "name": "Code Company Brasil",
+    "email": "codecompanybrasil@gmail.com",
+    "url": "https://codecompanybrasil.org/"
+  },
+  "contributors": [
+    {
+      "name": "Pablo Pereira",
+      "email": "pablopereira27@gmail.com",
+      "url": "https://www.linkedin.com/in/pablo-pereira-40032436/"
+    },
+    {
+      "name": "Pedro Godoy",
+      "email": "phgodoycosta@gmail.com",
+      "url": "https://github.com/PHGodoyCosta"
+    },
+    {
+      "name": "Guilherme Cadilhe",
+      "email": "guilhermegcadilhe@gmail.com",
+      "url": "https://github.com/Guilherme-G-Cadilhe"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/codecompanybrasil/discipline-web/issues"
+  },
   "dependencies": {
     "@codecompanybrasil/discipline-core": "^1.0.19",
     "@testing-library/jest-dom": "^5.17.0",
