@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
 }
 
 .query_inline {
@@ -13,7 +12,6 @@
     align-items: center;
     padding: 10px;
     gap: 10px;
-    position: relative;
     transition: all 0.5s;
 }
 
@@ -49,4 +47,8 @@
     border-radius: 10px;
     left: 0;
     background-color: #56565685;
+}
+
+.menu_container {
+    display: none;
 }

@@ -15,8 +15,7 @@ type ListItemProps = {
     iconAlt?: string,
     index: number
     link?: string,
-    setActiveMenuIndex: (newCount: number | null) => void,
-    // setActiveMenuIndex: (index: number | null) => void;
+    setActiveMenuIndex: (index: number | null) => void;
     activeMenuIndex: number | null
 }
 
@@ -43,22 +42,16 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
 
     useEffect(() => {
         if (activeMenuIndex !== index) {
-            setMenuStyle({
-                visibility: "hidden"
-            })
+            setMenuStyle({ display: "none" })
         }
     }, [activeMenuIndex])
 
     const onClickMenu = () => {
-        if (menuStyle.visibility === "hidden") {
-            setMenuStyle({
-                visibility: "visible"
-            })
+        if (menuStyle.display === "none") {
+            setMenuStyle({ display: "block" })
             setActiveMenuIndex(index)
         } else {
-            setMenuStyle({
-                visibility: "hidden"
-            })
+            setMenuStyle({ display: "none" })
             setActiveMenuIndex(null)
         }
     }
@@ -76,18 +69,18 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
 
     return (
         <>
-            <div className={styles.query_line} >
+            <div className={styles.query_line}>
                 <a href={link} className={styles.query_inline}>
                     <Image src={iconPath}
                         alt={iconAlt} />
                     {title}
                 </a>
 
-                <div style={{ position: "relative" }}>
+                <div>
                     <DcpIconButton onClick={onClickMenu}>
                         <DcpIcon.Menu />
                     </DcpIconButton>
-                    <div style={menuStyle} >
+                    <div className={styles.menu_container} style={menuStyle} >
                         <Menu options={menuOptions} />
                     </div>
                 </div>
