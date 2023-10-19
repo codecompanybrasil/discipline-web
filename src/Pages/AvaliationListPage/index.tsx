@@ -65,42 +65,44 @@ function AvaliationListPage() {
     }
 
     return (
-        <PageTemplate>
-            <PageTemplate.Header title="Avaliações" />
-            <PageTemplate.Panel>
-                <div className={styles.avaliacao}>
-                    {/* <Filters handleUrlAPI={handleUrlAPI} urlAPI={urlAPI} /> */}
-                    <div className={styles.querys_avaliacao} >
-                        {resData?.total === 0 ? (
-                            <p className={styles.sem_resultados}>Sem resultados</p>
-                        ) : (resData?.data.map((item, index) => (
-                            <ListItem
-                                key={index}
-                                index={index}
-                                hash={item.hash}
-                                link={`/avaliacoes/${item.hash}`}
-                                title={item.title}
-                                iconPath={item.icon}
-                                iconAlt={`Logo da Prova - ${item.title}`}
-                                setActiveMenuIndex={handleSetActiveMenuIndex}
-                                activeMenuIndex={activeMenuIndex}
-                            />
-                        )))}
+        <>
+            <PageTemplate>
+                <PageTemplate.Header title="Avaliações" />
+                <PageTemplate.Panel>
+                    <div className={styles.avaliacao}>
+                        {/* <Filters handleUrlAPI={handleUrlAPI} urlAPI={urlAPI} /> */}
+                        <div className={styles.querys_avaliacao}>
+                            {resData?.total === 0 ? (
+                                <p className={styles.sem_resultados}>Sem resultados</p>
+                            ) : (resData?.data.map((item, index) => (
+                                <ListItem
+                                    key={index}
+                                    index={index}
+                                    hash={item.hash}
+                                    link={`/avaliacoes/${item.hash}`}
+                                    title={item.title}
+                                    iconPath={item.icon}
+                                    iconAlt={`Logo da Prova - ${item.title}`}
+                                    setActiveMenuIndex={handleSetActiveMenuIndex}
+                                    activeMenuIndex={activeMenuIndex}
+                                />
+                            )))}
+                        </div>
+                        {resData?.total && (resData.total > itemsPerPage) &&
+                            <Pagination
+                                totalItems={resData?.total ?? 1}
+                                itemsPerPage={itemsPerPage}
+                                onPaginate={updateList} />
+                        }
                     </div>
-                    {resData?.total && (resData.total > itemsPerPage) &&
-                        <Pagination
-                            totalItems={resData?.total ?? 1}
-                            itemsPerPage={itemsPerPage}
-                            onPaginate={updateList} />
-                    }
-                </div>
-                {/* <div className="w-100 d-flex justify-content-center mt-5">
+                    {/* <div className="w-100 d-flex justify-content-center mt-5">
                 <DcpButton tag='a' text="Resolver Avaliações" href="/abrir-avaliacao" color="accent" />
             </div> */}
-            </PageTemplate.Panel>
-        </PageTemplate>
-
-
+                </PageTemplate.Panel>
+                <PageTemplate.Footer></PageTemplate.Footer>
+            </PageTemplate>
+            <PageTemplate.DevInfo />
+        </>
     );
 }
 

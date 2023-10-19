@@ -5,11 +5,10 @@
 
 .querys_avaliacao {
     width: 100%;
-    min-height: 300px;
     display: flex;
     flex-flow: column nowrap;
-    position: relative;
     margin-top: 10px;
+    margin-bottom: 70px;
 }
 
 .filter_area {
