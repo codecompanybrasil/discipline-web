@@ -17,8 +17,18 @@ main {
   --dcp-heavy-gray-color: #929292;
 }
 
+.dcp-button {
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
 .dcp-icon-button .dcp-icon {
   width: 32px;
   height: 32px;
 }
+
+.dcp-button.full-width {
+  justify-content: center;
+}
+
 /* Fim do FIX */

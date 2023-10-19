@@ -60,6 +60,9 @@ function QuestionOption({
             if (markedAlternative) {
                 setSelected(markedAlternative === data.hash)
             }
+
+            setCorrect(false)
+            setWrong(false)
         }
     }, [markedAlternative, correctionMode])
 
