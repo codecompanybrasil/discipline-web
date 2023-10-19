@@ -14,12 +14,8 @@ type ResultProps = {
 
 function ResultPanel({ numberCorrect, numberQuestions, setPage, numberNonResponse = 0 }: ResultProps) {
     return (
-        <div className="modal container p-2">
+        <>
             <div className="row">
-                <div className="col-auto">
-
-                </div>
-
                 <div className="col">
                     <div className="description_area">
                         {numberNonResponse === numberQuestions ? (
@@ -59,7 +55,7 @@ function ResultPanel({ numberCorrect, numberQuestions, setPage, numberNonRespons
                         } />
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
