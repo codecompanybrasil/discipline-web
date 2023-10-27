@@ -8,6 +8,8 @@ import Image from '@/Components/Image';
 
 import styles from './component.module.css'
 
+import enterIcon from '@/Assets/icons/icons8-enter-100.png'
+
 type ListItemProps = {
     hash: string,
     title: string,
@@ -58,10 +60,6 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
 
     const menuOptions = [
         {
-            text: "Resolver",
-            onClick: () => navigate(`/avaliacoes/${hash}`)
-        },
-        {
             text: "Saiba mais",
             onClick: () => navigate(`/avaliacoes/${hash}/detalhes`)
         }
@@ -70,13 +68,16 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
     return (
         <>
             <div className={styles.query_line}>
-                <a href={link} className={styles.query_inline}>
+                <a href={link} className={styles.query_inline} title='Resolver avaliação'>
                     <Image src={iconPath}
                         alt={iconAlt} />
                     {title}
                 </a>
 
-                <div>
+                <div className="btn-group">
+                    <DcpIconButton title='Resolver avaliação' onClick={() => navigate(`/avaliacoes/${hash}`)}>
+                        <img src={enterIcon} style={{ width: '32px', height: '32px' }} />
+                    </DcpIconButton>
                     <DcpIconButton onClick={onClickMenu}>
                         <DcpIcon.Menu />
                     </DcpIconButton>

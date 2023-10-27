@@ -35,4 +35,12 @@ img {
   justify-content: center;
 }
 
+.btn-group  {
+  display: flex;
+}
+
+.btn-group .dcp-icon-button {
+  margin: 0;
+}
+
 /* Fim do FIX */

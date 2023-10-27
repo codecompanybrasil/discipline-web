@@ -32,9 +32,6 @@ function Menu({ options }: MenuProps) {
             {options.map((item, index) => (
                 <Fragment key={index}>
                     <Option {...item} />
-                    {index !== options.length - 1 && (
-                        <div className={styles.line}></div>
-                    )}
                 </Fragment>
             ))}
         </div>
