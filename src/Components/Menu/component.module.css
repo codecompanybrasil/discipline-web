@@ -1,7 +1,7 @@
 .menu {
     min-width: 100px;
     position: absolute;
-    inset: auto 0 -45px auto;
+    inset: 52px 0 auto auto;
     z-index: 3;
 
     background-color: #F0F0F0;
