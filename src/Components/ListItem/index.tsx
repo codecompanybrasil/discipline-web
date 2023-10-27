@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode, CSSProperties } from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import { DcpIcon, DcpIconButton } from '@codecompanybrasil/discipline-core';
@@ -22,7 +22,7 @@ type ListItemProps = {
 const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, index, activeMenuIndex }: ListItemProps) => {
     const navigate = useNavigate();
 
-    const [menuStyle, setMenuStyle] = useState<CSSProperties>({ visibility: "hidden" })
+    const [menuStyle, setMenuStyle] = useState<CSSProperties>({ display: "none" })
 
     //Tentaiva de fazer os menus fecharem ao clickar na tela
 
