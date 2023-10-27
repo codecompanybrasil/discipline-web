@@ -12,7 +12,10 @@ type DisciplineLogoProps = {
 
 function DisciplineLogo({ type = "simple" }: DisciplineLogoProps) {
     const logoCss = (type === "complete") ? styles.complete_logo : styles.logo
-    return <img src={(type === "complete") ? logo_discipline : discipline} alt="Icon do Discipline" className={logoCss} />
+    return <img
+        src={(type === "complete") ? logo_discipline : discipline}
+        alt="Icon do Discipline"
+        className={logoCss} />
 }
 
 export default DisciplineLogo;

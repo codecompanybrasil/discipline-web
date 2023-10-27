@@ -11,6 +11,10 @@ main {
   align-items: center;
 }
 
+img {
+  pointer-events: none;
+}
+
 /* TODO: Remover após atualização do Discipline-core */
 
 :root {
