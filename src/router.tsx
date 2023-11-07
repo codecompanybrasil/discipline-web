@@ -4,6 +4,7 @@ import LoadingPage from './Pages/LoadingPage';
 import AvaliationListPage from "./Pages/AvaliationListPage";
 import AvaliationDetailsPage from "./Pages/AvaliationDetailsPage";
 import AvaliationPage from "./Pages/AvaliationPage";
+import Login from "./Pages/Login";
 
 export default createBrowserRouter([
     {
@@ -46,5 +47,9 @@ export default createBrowserRouter([
             return data
         },
     },
+    {
+        path: "login",
+        element: <Login />
+    }
 ]);
 

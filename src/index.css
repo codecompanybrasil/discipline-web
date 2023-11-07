@@ -1,8 +1,13 @@
 @import url("@codecompanybrasil/discipline-core/dist/styles/discipline-core.min.css");
 
-body {
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   background-color: var(--dcp-primary-color);
 }
+
 
 main {
   display: flex;
