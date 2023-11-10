@@ -1,4 +1,3 @@
-import { group } from 'console'
 import styles from './page.module.css'
 
 function Login() {
@@ -14,17 +13,17 @@ function Login() {
                     <form action="/login" method="POST" className={styles.form}>
                         <div className={styles.form_group}>
                             <h2>Email</h2>
-                            <input type="text" className={styles.input} />
+                            <input type="text" className={styles.input} maxLength={200} />
                         </div>
                         <div className={styles.form_group}>
                             <h2>Senha</h2>
-                            <input type="text" className={styles.input} />
+                            <input type="text" className={styles.input} maxLength={200} />
                             <a href="/forgot-my-password" className={styles.link_redirect}>Esqueceu sua senha?</a>
                         </div>
                         <button className={styles.submit} type="submit">Entrar</button>
                     </form>
                     <div className={`${styles.form_group} mt-4`}>
-                        <span className={styles.link_redirect}>Ainda não tem uma conta? <span className={styles.span_redirect}> <a href="/criar-conta" className={styles.link_redirect}>Crie Grátis!</a></span></span>
+                        <span className={styles.link_redirect}>Ainda não tem uma conta? <span className={styles.span_redirect}> <a href="/register" className={styles.link_redirect}>Crie Grátis!</a></span></span>
                     </div>
                 </div>
             </div>

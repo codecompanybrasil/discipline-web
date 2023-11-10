@@ -46,14 +46,33 @@
 
 .ou {
     margin-top: 15px;
+    position: relative;
+}
+
+.ou::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    margin: auto;
+    margin-right: 25px;
+    width: 150px;
+    height: 2px;
+    background-color: var(--dcp-black-color);
+    
 }
 
 .ou::after {
     content: "";
-    width: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    margin-left: 5px;
+    width: 150px;
     height: 2px;
-    background-color: var(--dcp-black-color);
-    
+    background-color: var(--dcp-black-color);   
 }
 
 .form {
@@ -75,6 +94,7 @@
 .input {
     width: 100%;
     margin-bottom: 10px;
+    height: 40px;
 }
 
 .link_redirect {
@@ -99,4 +119,20 @@
     font-size: 1.8em;
     margin-bottom: 20px;
 
+}
+
+@media only screen and (max-width: 550px) {
+    .login_area {
+        width: 95%;
+        min-width: auto;
+    }
+
+    .ou::before {
+        width: 25vw;
+        
+    }
+    
+    .ou::after {
+        width: 25vw;
+    }
 }
