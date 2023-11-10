@@ -22,7 +22,7 @@ function CreateAccount() {
                         <div className={styles.form_group}>
                             <div className="d-flex mb-2" style={{gap: "5px"}}>
                                 <input type="checkbox" name="termos" className={styles.checkbox_terms} />
-                                <span className={styles.span_termos}>Declaro que li e estou de acordo com os termos e condições</span>
+                                <span className={styles.span_termos}>Declaro que li e estou de acordo com os <a href="/termos" className={styles.link_redirect} >termos e condições</a></span>
                             </div>
                             <div className="d-flex" style={{gap: "5px"}}>
                                 <input type="checkbox" name="termos" className={styles.checkbox_terms} />
