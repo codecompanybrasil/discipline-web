@@ -6,6 +6,7 @@ import AvaliationDetailsPage from "./Pages/AvaliationDetailsPage";
 import AvaliationPage from "./Pages/AvaliationPage";
 import Login from "./Pages/Login";
 import CreateAccount from "./Pages/CreateAccount";
+import ForgotPassword from "./Pages/ForgotPassword";
 
 export default createBrowserRouter([
     {
@@ -55,6 +56,10 @@ export default createBrowserRouter([
     {
         path: "register",
         element: <CreateAccount />
+    },
+    {
+        path: "forgot-password",
+        element: <ForgotPassword />
     }
 ]);
 

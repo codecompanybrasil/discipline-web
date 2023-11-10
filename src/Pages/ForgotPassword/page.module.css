@@ -1,0 +1,138 @@
+.background_login {
+    background-color: var(--dcp-primary-color);
+    height: 100vh;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);
+    background-size: 30px 30px;
+    overflow-y: hidden;
+    background-position: -5px -5px
+}
+
+.main {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_area {
+    background-color: var(--dcp-gray-color);
+    min-width: 500px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 2.1em;
+    text-align: center;
+}
+
+.google_login {
+    background-color: var(--dcp-primary-color);
+    border: none;
+    cursor: pointer;
+    width: 70%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.google_login span {
+    color: var(--dcp-white-color);
+    font-weight: 500;
+
+}
+
+.ou {
+    margin-top: 15px;
+    position: relative;
+}
+
+.ou::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    margin: auto;
+    margin-right: 25px;
+    width: 150px;
+    height: 2px;
+    background-color: var(--dcp-black-color);
+    
+}
+
+.ou::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    margin-left: 5px;
+    width: 150px;
+    height: 2px;
+    background-color: var(--dcp-black-color);   
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.form h2 {
+    margin-bottom: 10px;
+}
+
+.form_group {
+    width: 70%;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+.link_redirect {
+    font-size: 1.1em;
+    color: #0061F2;
+}
+
+.span_redirect {
+    font-size: 1em;
+    text-decoration: underline;
+    margin-top: 20px;
+}
+
+.submit {
+    color: var(--dcp-white-color);
+    background-color: var(--dcp-success-color);
+    border: 5px solid var(--dcp-success-border-color);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+
+}
+
+@media only screen and (max-width: 550px) {
+    .login_area {
+        width: 95%;
+        min-width: auto;
+    }
+
+    .ou::before {
+        width: 25vw;
+        
+    }
+    
+    .ou::after {
+        width: 25vw;
+    }
+}
