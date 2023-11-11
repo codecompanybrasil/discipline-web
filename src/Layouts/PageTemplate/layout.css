@@ -41,3 +41,11 @@ footer.dev_info a {
         border-radius: 10px;
     }
 }
+
+@media (min-width: 1200px) {
+    .content_container {
+        display: grid;
+        grid-template-columns: 220px 1fr 220px;
+        gap: 10px;
+    }
+}
