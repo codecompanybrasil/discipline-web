@@ -1,0 +1,78 @@
+{
+  "name": "discipline-web",
+  "version": "1.1.1",
+  "private": false,
+  "description": "Sistema Educacional Online para Aplicação de Provas",
+  "license": "MIT",
+  "author": {
+    "name": "Code Company Brasil",
+    "email": "codecompanybrasil@gmail.com",
+    "url": "https://codecompanybrasil.org/"
+  },
+  "contributors": [
+    {
+      "name": "Pablo Pereira",
+      "email": "pablopereira27@gmail.com",
+      "url": "https://www.linkedin.com/in/pablo-pereira-40032436/"
+    },
+    {
+      "name": "Pedro Godoy",
+      "email": "phgodoycosta@gmail.com",
+      "url": "https://github.com/PHGodoyCosta"
+    },
+    {
+      "name": "Guilherme Cadilhe",
+      "email": "guilhermegcadilhe@gmail.com",
+      "url": "https://github.com/Guilherme-G-Cadilhe"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/codecompanybrasil/discipline-web/issues"
+  },
+  "dependencies": {
+    "@codecompanybrasil/discipline-core": "^1.0.19",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.53",
+    "@types/react": "^18.2.22",
+    "@types/react-dom": "^18.2.7",
+    "dayjs": "^1.11.10",
+    "dompurify": "^3.0.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0",
+    "@types/dompurify": "^3.0.2"
+  }
+}
