@@ -105,7 +105,12 @@
 .span_redirect {
     font-size: 1em;
     text-decoration: underline;
+    color: #0061F2;
     margin-top: 20px;
+}
+
+.subtitle {
+    font-weight: normal;
 }
 
 .submit {

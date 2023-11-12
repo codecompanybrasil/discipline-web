@@ -29,19 +29,31 @@
     text-align: center;
 }
 
+.google_icon {
+    background-color: var(--dcp-white-color);
+    padding: 1px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .google_login {
     background-color: var(--dcp-primary-color);
     border: none;
     cursor: pointer;
     width: 70%;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
 }
 
 .google_login span {
     color: var(--dcp-white-color);
+    margin: auto 0;
     font-weight: 500;
-
 }
 
 .ou {
@@ -100,6 +112,7 @@
 .link_redirect {
     font-size: 1.1em;
     color: #0061F2;
+    text-decoration: underline;
 }
 
 .span_redirect {
@@ -119,6 +132,49 @@
     font-size: 1.8em;
     margin-bottom: 20px;
 
+}
+
+.subtitle {
+    font-weight: normal;
+}
+
+.password_area {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+    position: relative;
+    border: 2px solid var(--dcp-black-color);
+    background-color: var(--dcp-white-color);
+    border-radius: var(--dcp-border-radius-sm);
+    padding: var(--dcp-padding-sm);
+}
+
+.password_area_input {
+    margin: 0;
+    border: none;
+    background: transparent;
+    border-radius: none;
+    padding: 0;
+    height: 26px;
+    width: calc(100% - 35px);
+}
+
+.password_area_input:hover, .password_area_input:focus, .input:hover, .input:focus {
+    box-shadow: none;
+    outline: none;
+}
+  
+.password_area_button {
+    border: none;
+    position: absolute;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+}
+  
+.password_area_button:hover {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 550px) {
