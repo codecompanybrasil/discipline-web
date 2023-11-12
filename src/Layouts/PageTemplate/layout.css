@@ -36,6 +36,10 @@ footer.dev_info a {
     text-decoration: underline;
 }
 
+.adsbygoogle {
+    height: calc(100vh - 160px);
+}
+
 @media (min-width: 576px) {
     .panel {
         border-radius: 10px;
