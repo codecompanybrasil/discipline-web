@@ -36,6 +36,10 @@ footer.dev_info a {
     text-decoration: underline;
 }
 
+.main-panel {
+    display: flex;
+}
+
 .adsbygoogle {
     height: calc(100vh - 160px);
 }

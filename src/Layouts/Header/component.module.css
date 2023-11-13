@@ -28,4 +28,24 @@
     line-height: 1;
 }
 
+.header {
+    background-color: var(--dcp-primary-border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.discipline_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_icon {
+    width: 60px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 1px solid var(--dcp-white-color);
+}
+
 /* background-color: rgba(0,0,0,0.5); */

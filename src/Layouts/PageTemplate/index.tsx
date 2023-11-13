@@ -7,9 +7,19 @@ const PageTemplate = ({ children }: React.PropsWithChildren) => (
     <div className={["container-fluid layout_container"].join(" ")}>{children}</div>
 )
 
-PageTemplate.Header = (props: any) => <Header title={props.title} />
+PageTemplate.Header = (props: any) => <Header />
 
-PageTemplate.Panel = (props: any) => {
+PageTemplate.Footer = (props: any) => {
+    return (
+        <footer className="page_footer row">
+            <div className="col-12">
+                {props.children}
+            </div>
+        </footer>
+    )
+}
+
+PageTemplate.Content = (props: any) => {
     return (
         <div className="content_container">  {/* Div extra necessária para fixar alterações do display grid. TODO: Revisitar essa área para entender melhor e fazer possiveis melhorias */}
             <div className="menu d-none d-lg-block">
@@ -25,45 +35,23 @@ PageTemplate.Panel = (props: any) => {
                     </div>
                 </div>
             </div>
-
-            <div className="ads d-none d-lg-block">
-                {/* <!-- Anúncio Lateral --> */}
-                <ins className="adsbygoogle"
-                    style={{ display: 'block' }}
-                    data-ad-client="ca-pub-3474364984949013"
-                    data-ad-slot="9484542151"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({ });
-                </script>
-            </div>
         </div>
     )
 }
 
-PageTemplate.Footer = (props: any) => {
+PageTemplate.Panel = (props: any) => {
     return (
-        <footer className="page_footer row">
-            <div className="col-12">
-                {props.children}
-            </div>
-        </footer>
+        <div className="main-panel"> {/*Usar Bootstrap para fazer o grid do menu e conteudo */}
+            {props.children}
+        </div>
     )
 }
 
-PageTemplate.DevInfo = () => {
+PageTemplate.Menu = (props: any) => {
     return (
-        <footer className="dev_info">
-            <div className="row gx-1 justify-content-center">
-                <div className="col-auto col-sm-auto">
-                    <span className="copyright">© 2023 <a href="https://codecompany.org/" target="_blank">Code Company Brasil</a></span>
-                </div>
-                <div className="col-auto col-sm-auto">
-                    <span className="version">(Versão {process.env.REACT_APP_VERSION})</span>
-                </div>
-            </div>
-        </footer>
+        <div className="menu">
+            <h1>Menu</h1>
+        </div>
     )
 }
 

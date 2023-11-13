@@ -1,39 +1,26 @@
 // import { useState, useEffect } from "react";
 
-import DisciplineLogo from "@/Components/DisciplineLogo";
+import { LogoTrans } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpLogo";
+import { Menu } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon";
+import { DcpIconButton } from "@codecompanybrasil/discipline-core";
 
 import styles from "./component.module.css";
 
-type HeaderProps = {
-    title?: string;
-};
-
-function Header({ title }: HeaderProps) {
-
-    // const [hrefDisciplineButton, setHrefDisciplineButton] =
-    //     useState<string>("/");
-
-    // useEffect(() => {
-    //     const myURL = new URL(window.location.href);
-    //     if (myURL.pathname == "/avaliacoes") {
-    //         setHrefDisciplineButton("/");
-    //     } else {
-    //         setHrefDisciplineButton("/avaliacoes");
-    //     }
-    // }, []);
-
+function Header() {
     return (
-        <header className="row align-items-center">
+        <header className={`${styles.header}`}>
             <div className="d-flex col-12 justify-content-center col-md-3 justify-content-md-start col-xl-2">
+                    <DcpIconButton>
+                        <Menu width={100} />
+                    </DcpIconButton>
                 <div className={styles.dcp_icon_area}>
                     <a href="/" className={styles.discipline_button}>
-                        <DisciplineLogo />
+                        <LogoTrans width="50px" style={{margin: "15px"}} />
                     </a>
-                    <div className={styles.beta}>Beta</div>
                 </div>
             </div>
-            <div className="col-12 col-md-6 col-xl-8">
-                {title && <h1 className={styles.title}>{title}</h1>}
+            <div>
+                <img src="https://github.com/PHGodoyCosta.png" className={styles.profile_icon} alt="Imagem do perfil" />
             </div>
         </header>
     );
