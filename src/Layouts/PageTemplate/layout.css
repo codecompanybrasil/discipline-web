@@ -44,16 +44,71 @@ footer.dev_info a {
     height: calc(100vh - 160px);
 }
 
-@media (min-width: 576px) {
-    .panel {
-        border-radius: 10px;
+.menu {
+    background-color: #C3C3C3;
+    width: 15%;
+    min-width: 250px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.menu-options {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.menu-option, .menu-option-selected {
+    display: flex;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.menu-option-selected {
+    background-color: var(--dcp-primary-color);
+    margin-top: 5px;
+    border-top: 5px solid var(--dcp-primary-border-color);
+    border-bottom: 5px solid var(--dcp-primary-border-color);
+    color: var(--dcp-white-color);
+    cursor: default;
+}
+
+.menu-option:hover {
+    background-color: #B0B0B0;
+}
+
+.menu-option-title {
+    margin: auto 0;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+.version-area {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.content_container {
+    /* min-width: 80%; */
+    flex-grow: 1;
+}
+
+@media only screen and (max-width: 800px) {
+    .menu {
+        display: none;
+    }
+
+    .content_container {
+        margin-top: 15px;
     }
 }
 
-@media (min-width: 1200px) {
-    .content_container {
-        display: grid;
-        grid-template-columns: 220px 1fr 220px;
-        gap: 10px;
+@media (min-width: 576px) {
+    .panel {
+        border-radius: 10px;
     }
 }

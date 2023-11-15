@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
+import { useNavigate, Navigate} from "react-router-dom";
 
-import LoadingPage from './Pages/LoadingPage';
 import AvaliationListPage from "./Pages/AvaliationListPage";
 import AvaliationPage from "./Pages/AvaliationPage";
+
 
 export default createBrowserRouter([
     {
         path: "/",
-        element: <LoadingPage />,
+        element: <Navigate to="/avaliacoes" />,
     },
     {
         path: "avaliacoes",

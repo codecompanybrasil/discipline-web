@@ -26,22 +26,6 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
 
     const [menuStyle, setMenuStyle] = useState<CSSProperties>({ display: "none" })
 
-    //Tentaiva de fazer os menus fecharem ao clickar na tela
-
-    // useEffect(() => {
-    //     const handleClickForaDoMenu = (event: MouseEvent) => {
-    //         if (menuRef.current && !menuRef.current.contains(event.target as HTMLElement) && menuStyle.visibility == "visible") {
-    //             console.log("Clicke fora do negocio")
-    //             setMenuStyle({
-    //                 visibility: "hidden"
-    //             })
-    //         }
-    //     }
-
-    //     document.addEventListener("click", handleClickForaDoMenu)
-
-    // }, [])
-
     useEffect(() => {
         if (activeMenuIndex !== index) {
             setMenuStyle({ display: "none" })
@@ -78,9 +62,9 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
                     <DcpIconButton title='Resolver avaliação' onClick={() => navigate(`/avaliacoes/${hash}`)}>
                         <img src={enterIcon} style={{ width: '32px', height: '32px' }} />
                     </DcpIconButton>
-                    <DcpIconButton onClick={onClickMenu}>
+                    {/* <DcpIconButton onClick={onClickMenu}>
                         <DcpIcon.Menu />
-                    </DcpIconButton>
+                    </DcpIconButton> */}
                     <div className={styles.menu_container} style={menuStyle} >
                         <Menu options={menuOptions} />
                     </div>

@@ -1,7 +1,7 @@
 @import url("@codecompanybrasil/discipline-core/dist/styles/discipline-core.min.css");
 
 body {
-  background-color: var(--dcp-primary-color);
+  background-color: #F8F8F8;
 }
 
 main {

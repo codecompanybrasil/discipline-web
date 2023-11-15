@@ -68,7 +68,7 @@ function AvaliationListPage() {
             <PageTemplate>
                 <PageTemplate.Header title="Avaliações" />
                 <PageTemplate.Panel>
-                    <PageTemplate.Menu />
+                    <PageTemplate.Menu selected={3} />
                     <PageTemplate.Content>
                         <div className={styles.avaliacao}>
                             {/* <Filters handleUrlAPI={handleUrlAPI} urlAPI={urlAPI} /> */}

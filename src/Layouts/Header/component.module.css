@@ -4,13 +4,6 @@
     margin: 0.3em 0;
 }
 
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-    .title {
-        margin: 0.5em 0 0.3em;
-    }
-}
-
 .dcp_icon_area {
     display: flex;
     align-items: center;
@@ -38,6 +31,7 @@
 .discipline_button {
     display: flex;
     justify-content: center;
+    padding-left: 10px;
     align-items: center;
 }
 
@@ -48,4 +42,18 @@
     border: 1px solid var(--dcp-white-color);
 }
 
+.button_show_header {
+    display: none !important;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .button_show_header {
+        display: flex !important;
+    }
+
+    .discipline_button {
+        padding-left: 0;
+    }
+}
 /* background-color: rgba(0,0,0,0.5); */

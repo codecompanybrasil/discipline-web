@@ -1,10 +1,15 @@
-import React from "react"
 import Header from "../Header"
+import { Home, Explore, Gym, Tarefa, Create } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon";
+import { useRef, PropsWithChildren } from "react";
 
 import './layout.css';
 
-const PageTemplate = ({ children }: React.PropsWithChildren) => (
-    <div className={["container-fluid layout_container"].join(" ")}>{children}</div>
+type PageTemplateMenuProps = {
+    selected?: number
+}
+
+const PageTemplate = ({ children }: PropsWithChildren) => (
+    <div className={["layout_container"].join(" ")}>{children}</div>
 )
 
 PageTemplate.Header = (props: any) => <Header />
@@ -22,11 +27,11 @@ PageTemplate.Footer = (props: any) => {
 PageTemplate.Content = (props: any) => {
     return (
         <div className="content_container">  {/* Div extra necessária para fixar alterações do display grid. TODO: Revisitar essa área para entender melhor e fazer possiveis melhorias */}
-            <div className="menu d-none d-lg-block">
+            {/* <div className="menu d-none d-lg-block">
                 
-            </div>
-
-            <div className="container">
+            </div> */}
+            {props.children}
+            {/* <div className="container">
                 <div className="row">
                     <div className="panel col-12 py-4">
                         <div className="panel_inner">
@@ -34,7 +39,7 @@ PageTemplate.Content = (props: any) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
@@ -47,10 +52,34 @@ PageTemplate.Panel = (props: any) => {
     )
 }
 
-PageTemplate.Menu = (props: any) => {
+PageTemplate.Menu = ({selected = -1}: PageTemplateMenuProps) => {
     return (
         <div className="menu">
-            <h1>Menu</h1>
+            <div className="menu-options">
+                <a href={selected === 0 ? "#" : "/home"} className={selected === 0 ? "menu-option-selected" : "menu-option"}>
+                    <Home color={selected === 0 ? "white" : "black"} />
+                    <span className="menu-option-title">Home</span>
+                </a>
+                <a href={selected === 1 ? "#" : "/explorar"} className={selected === 1 ? "menu-option-selected" : "menu-option"}>
+                    <Explore color={selected === 1 ? "white" : "black"} />
+                    <span className="menu-option-title">Explorar</span>
+                </a>
+                <a href={selected === 2 ? "#" : "/treinamento"} className={selected === 2 ? "menu-option-selected" : "menu-option"}>
+                    <Gym color={selected === 2 ? "white" : "black"} />
+                    <span className="menu-option-title">Treinamento</span>
+                </a>
+                <a href={selected === 3 ? "#" : "/avaliacoes"} className={selected === 3 ? "menu-option-selected" : "menu-option"}>
+                    <Tarefa color={selected === 3 ? "white" : "black"} />
+                    <span className="menu-option-title">Avaliações</span>
+                </a>
+                <a href={selected === 4 ? "#" : "/criar"} className={selected === 4 ? "menu-option-selected" : "menu-option"}>
+                    <Create color={selected === 4 ? "white" : "black"} />
+                    <span className="menu-option-title">Criar</span>
+                </a>
+            </div>
+            <div className="version-area">
+                <p>Versão 1.0.1</p>
+            </div>
         </div>
     )
 }

@@ -11,6 +11,11 @@
     margin-bottom: 70px;
 }
 
+.avaliacao {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .filter_area {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
