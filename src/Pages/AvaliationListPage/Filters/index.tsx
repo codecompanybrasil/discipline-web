@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
-import { DcpIconButton } from "@codecompanybrasil/discipline-core"
-import filterImage from '@codecompanybrasil/discipline-core/dist/assets/icons/black/icons8-options-100.png'
+import { DcpButton, DcpIconButton } from "@codecompanybrasil/discipline-core"
+import { Filter, Lupa } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon"
 
 import QueryFilter from "./QueryFilter"
 import styles from './component.module.css'
@@ -14,11 +14,11 @@ type FilterProps = {
 const Filters = ({ handleUrlAPI, urlAPI }: FilterProps) => {
     const [searchData, setSearchData] = useState<string>("")
     const [anoData, setAnoData] = useState<number>(0)
+    const [statusData, setStatusData] = useState<boolean>(false)
     const [isOpened, setIsOpened] = useState<boolean>(false)
     // const [statusData, setStatusData] = useState<boolean>()
 
     useEffect(() => {
-        // Função para renovar a URL dos filtros
         if (searchData) {
             urlAPI.searchParams.set("title", searchData)
         } else {
@@ -28,7 +28,6 @@ const Filters = ({ handleUrlAPI, urlAPI }: FilterProps) => {
     }, [searchData]);
 
     useEffect(() => {
-        // Função para renovar a URL dos filtros
         if (anoData) {
             urlAPI.searchParams.set("year", String(anoData))
         } else {
@@ -36,6 +35,14 @@ const Filters = ({ handleUrlAPI, urlAPI }: FilterProps) => {
         }
         handleUrlAPI(urlAPI)
     }, [anoData]);
+
+    useEffect(() => {
+        if (statusData) {
+            urlAPI.searchParams.set("status", String(statusData))
+        } else {
+            urlAPI.searchParams.delete("status")
+        }
+    }, [statusData])
 
 
     const handleSearchData = (d: string) => {
@@ -47,31 +54,40 @@ const Filters = ({ handleUrlAPI, urlAPI }: FilterProps) => {
         setAnoData(d)
     }
 
+    const handleStatusData = (d: boolean) => {
+        setStatusData(d)
+    }
+
     // const handleStatusData = (d: boolean) => {
     //     setStatusData(d)
     // }
 
     return (
-        <header className={styles.header}>
-            <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <DcpIconButton href='/' onClick={() => setIsOpened((prev) => !prev)}>
-                            <img className="dcp-icon" src={filterImage} alt="Filtro" />
-                        </DcpIconButton>
-                    </div>
-                </div>
-                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3"
-                    style={{ display: (isOpened) ? 'block' : 'none' }}>
-                    <div className="col">
+        <div className={styles.filter}>
+            <div className={styles.filter_area}>
+                <div className={styles.row_filter}>
+                    <div className={styles.search_input}>
                         <QueryFilter title="Pesquisar" typeInput="search" placeholder="Pesquisar..." handleData={handleSearchData} />
                     </div>
-                    <div className="col">
-                        <QueryFilter title="Ano" typeInput="date" handleData={handleAnoData} />
-                    </div>
+                    <DcpIconButton color="accent">
+                        <Lupa color="black" />
+                    </DcpIconButton>
+                    <DcpIconButton href='/' onClick={() => setIsOpened((prev) => !prev)}>
+                        <Filter />
+                    </DcpIconButton>
+                    {/* <DcpButton 
+                        text="Pesquisar"
+                        color="accent"
+                        slotstart={<Lupa color="black" />}
+                    /> */}
+                </div>
+                <div className={styles.row_filter}
+                    style={{ display: (isOpened) ? 'flex' : 'none' }}> {/*row row-cols-1 row-cols-md-2 row-cols-lg-3*/}
+                    <QueryFilter title="Ano" typeInput="date" handleData={handleAnoData} />
+                    <QueryFilter title="Status" typeInput="status" handleData={handleStatusData} />
                 </div>
             </div>
-        </header >
+        </div >
     )
 }
 

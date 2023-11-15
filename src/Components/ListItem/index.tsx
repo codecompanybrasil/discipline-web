@@ -2,6 +2,7 @@ import { useState, useEffect, CSSProperties } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import { DcpIcon, DcpIconButton } from '@codecompanybrasil/discipline-core';
+import { Enter } from '@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon';
 
 import Menu from '@/Components/Menu';
 import Image from '@/Components/Image';
@@ -19,6 +20,19 @@ type ListItemProps = {
     link?: string,
     setActiveMenuIndex: (index: number | null) => void;
     activeMenuIndex: number | null
+}
+
+type AvaliacaoStatusProps = {
+    isDone?: boolean
+}
+
+const AvaliacaoStatus = ({isDone=false}: AvaliacaoStatusProps) => {
+    return (
+        <div className={styles.status_area}>
+            <div className={`${styles.status_circle} ${isDone ? styles.status_circle_feito : styles.status_circle_nao_feito}`}></div>
+            <span>{isDone ? "Feito" : "Não feito"}</span>
+        </div>
+    )
 }
 
 const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, index, activeMenuIndex }: ListItemProps) => {
@@ -59,15 +73,16 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
                 </a>
 
                 <div className="btn-group">
+                    <AvaliacaoStatus />
                     <DcpIconButton title='Resolver avaliação' onClick={() => navigate(`/avaliacoes/${hash}`)}>
-                        <img src={enterIcon} style={{ width: '32px', height: '32px' }} />
+                        <Enter />
                     </DcpIconButton>
                     {/* <DcpIconButton onClick={onClickMenu}>
                         <DcpIcon.Menu />
                     </DcpIconButton> */}
-                    <div className={styles.menu_container} style={menuStyle} >
+                    {/* <div className={styles.menu_container} style={menuStyle} >
                         <Menu options={menuOptions} />
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className={styles.line}></div>

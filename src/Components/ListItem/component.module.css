@@ -54,6 +54,29 @@
     background-color: #56565685;
 }
 
-.menu_container {
-    display: none;
+
+.status_area {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    gap: 5px;
+}
+
+.status_area span {
+    white-space: nowrap;
+    font-size: 1.1em;
+    user-select: none;
+}
+
+.status_circle {
+    padding: 7px;
+    border-radius: 50%;
+}
+
+.status_circle_feito {
+    background-color: var(--dcp-success-color);
+}
+
+.status_circle_nao_feito {
+    background-color: #989898;
 }

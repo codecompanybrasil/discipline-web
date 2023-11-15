@@ -1,6 +1,6 @@
 import Header from "../Header"
 import { Home, Explore, Gym, Tarefa, Create } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon";
-import { useRef, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
 import './layout.css';
 

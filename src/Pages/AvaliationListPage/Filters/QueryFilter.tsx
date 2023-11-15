@@ -13,6 +13,29 @@ interface InputDateProps {
     onChange: (year: string) => void
 }
 
+type InputStatusProps = {
+    name: string,
+    placeholder?: string,
+    onChange: (status: boolean) => void
+}
+
+const InputStatus = ({name, placeholder, onChange}: InputStatusProps) => {
+    const [status, setStatus] = useState<boolean>(false)
+
+    useEffect(() => {
+        onChange(status)
+    }, [status])
+
+    return (
+        <>
+            <select className={styles.input_status_options} onChange={(event => setStatus(event.target.value === "Feito" ? true : false))} >
+                <option value="Feito">Feito</option>
+                <option value="Não Feito">Não Feito</option>
+            </select>
+        </>
+    )
+}
+
 const InputDate = ({ name, placeholder, onChange }: InputDateProps) => {
     const [date, setDate] = useState<string>("");
 
@@ -49,7 +72,7 @@ const InputSearch = ({ id, placeholder, onChange }: InputSearchProps) => {
     return (
         <input type="search"
             id={id}
-            className='full-width'
+            className={styles.input}
             value={searchData}
             onChange={(event) => setSearchData(event.target.value)}
             placeholder={placeholder}
@@ -59,7 +82,7 @@ const InputSearch = ({ id, placeholder, onChange }: InputSearchProps) => {
 
 interface QueryFiltroProps {
     title: string,
-    typeInput: "text" | "select" | "search" | "date",
+    typeInput: "text" | "select" | "search" | "date" | "status",
     placeholder?: string,
     handleData: (data: any) => void
 }
@@ -119,8 +142,6 @@ const QueryFilter = ({ title, typeInput, placeholder, handleData }: QueryFiltroP
 
     return (
         <div className={styles.query_filtro} >
-            <label htmlFor={title}>{title}</label>
-
             {typeInput === "search" && (
                 <InputSearch id={title}
                     placeholder={placeholder}
@@ -144,6 +165,14 @@ const QueryFilter = ({ title, typeInput, placeholder, handleData }: QueryFiltroP
                 //         ))}
                 //     </ul>
                 // </div>
+            )}
+
+            {typeInput === "status" && (
+                <InputStatus 
+                    name={title}
+                    placeholder="Status"
+                    onChange={(status: boolean) => setStatusInputValue(String(status))}
+                />
             )}
 
             {typeInput === "date" && (

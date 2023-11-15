@@ -70,6 +70,7 @@ function AvaliationListPage() {
                 <PageTemplate.Panel>
                     <PageTemplate.Menu selected={3} />
                     <PageTemplate.Content>
+                        <Filters handleUrlAPI={handleUrlAPI} urlAPI={urlAPI} />
                         <div className={styles.avaliacao}>
                             {/* <Filters handleUrlAPI={handleUrlAPI} urlAPI={urlAPI} /> */}
                             <div className={styles.querys_avaliacao}>
@@ -89,7 +90,7 @@ function AvaliationListPage() {
                                     />
                                 )))}
                             </div>
-                            {resData?.total && (resData.total > itemsPerPage) &&
+                            {true && /*resData?.total && (resData.total > itemsPerPage)*/
                                 <Pagination
                                     totalItems={resData?.total ?? 1}
                                     itemsPerPage={itemsPerPage}
