@@ -4,12 +4,16 @@ import { PropsWithChildren } from "react";
 
 import './layout.css';
 
+interface PageTemplateProps extends PropsWithChildren {
+    backgroundColor?: string
+}
+
 type PageTemplateMenuProps = {
     selected?: number
 }
 
-const PageTemplate = ({ children }: PropsWithChildren) => (
-    <div className={["layout_container"].join(" ")}>{children}</div>
+const PageTemplate = ({ children, backgroundColor = "auto" }: PageTemplateProps) => (
+    <div className={["layout_container"].join(" ")} style={{backgroundColor: backgroundColor}} >{children}</div>
 )
 
 PageTemplate.Header = (props: any) => <Header />

@@ -66,7 +66,7 @@ function AvaliationListPage() {
     return (
         <>
             <PageTemplate>
-                <PageTemplate.Header title="Avaliações" />
+                <PageTemplate.Header />
                 <PageTemplate.Panel>
                     <PageTemplate.Menu selected={3} />
                     <PageTemplate.Content>

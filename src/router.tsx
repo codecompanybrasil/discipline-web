@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import { useNavigate, Navigate} from "react-router-dom";
+import { Navigate} from "react-router-dom";
 
 import AvaliationListPage from "./Pages/AvaliationListPage";
 import AvaliationPage from "./Pages/AvaliationPage";
+import Page404 from "./Pages/404";
 
 
 export default createBrowserRouter([
@@ -29,6 +30,10 @@ export default createBrowserRouter([
 
             return data
         },
+    },
+    {
+        path: "*",
+        element: <Page404 />
     }
 ]);
 

@@ -1,0 +1,16 @@
+.main_content {
+    width: 100%;
+    text-align: center;
+    color: var(--dcp-white-color);
+}
+
+.main_content h1 {
+    font-size: 5em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.main_content h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
