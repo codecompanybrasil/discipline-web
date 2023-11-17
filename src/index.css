@@ -50,4 +50,8 @@ h2 {
   margin-top: 0;
 }
 
+input, select {
+  height: 35px;
+}
+
 /* Fim do FIX */

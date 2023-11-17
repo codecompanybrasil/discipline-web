@@ -46,7 +46,7 @@ const InputDate = ({ name, placeholder, onChange }: InputDateProps) => {
 
     return (
         // <NativeDatepicker value={date} onChange={(newValue) => setDate(newValue)} />
-        <input type="text"
+        <input type="number"
             name={name}
             id={name}
             value={date}

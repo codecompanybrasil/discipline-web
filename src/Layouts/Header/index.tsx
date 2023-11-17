@@ -11,16 +11,16 @@ function Header() {
         <header className={`${styles.header}`}>
             <div className="d-flex col-md-3 justify-content-md-start col-xl-2">
                 <DcpIconButton className={styles.button_show_header}>
-                    <Menu width={100} color="white" />
+                    <Menu color="white" />
                 </DcpIconButton>
                 <div className={styles.dcp_icon_area}>
                     <a href="/" className={styles.discipline_button}>
-                        <LogoTrans width="50px" style={{margin: "15px"}} />
+                        <LogoTrans width="35px" style={{margin: "15px"}} />
                     </a>
                 </div>
             </div>
             <div>
-                <img src="https://github.com/PHGodoyCosta.png" className={styles.profile_icon} alt="Imagem do perfil" />
+                <img style={{width: "50px"}} src="https://github.com/PHGodoyCosta.png" className={styles.profile_icon} alt="Imagem do perfil" />
             </div>
         </header>
     );

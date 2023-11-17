@@ -81,5 +81,12 @@
 
 .row_filter {
     display: flex;
+    margin-bottom: 10px;
     gap: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .filter_area {
+        width: 95%;
+    }
 }
