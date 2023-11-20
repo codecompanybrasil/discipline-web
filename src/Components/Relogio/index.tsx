@@ -1,0 +1,112 @@
+import { useState, useEffect, useRef } from "react"
+import styles from './component.module.css'
+
+type RelogioProps = {
+    hours?: number,
+    minutes?: number,
+    seconds?: number,
+    pauseTime?: boolean,
+    hideMode?: boolean,
+    endTime?: () => void
+}
+
+type RelogioCounterProps = {
+    hours: number,
+    minutes: number,
+    seconds: number
+}
+
+function Relogio({hours=0, minutes=0, seconds=0, endTime = () => {}, pauseTime=false, hideMode=false}: RelogioProps) {
+    let myPauseTime: boolean = false
+    // const interval = useRef<NodeJS.Timer>()
+
+    const [relogio, setRelogio] = useState<RelogioCounterProps>({
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds
+    })
+
+    const timeBeautifier = (time: number) => {
+        let timeString = String(time)
+        if (timeString.length === 1) {
+            return `0${timeString}`
+        } else {
+            return timeString
+        }
+    }
+
+    const decreaseTime = () => {
+        console.log("Decreasinh")
+        if (relogio.seconds - 1 > 0) {
+            setRelogio(time => {
+                return {
+                    hours: time.hours,
+                    minutes: time.minutes,
+                    seconds: time.seconds - 1
+                }
+            })
+        } else {
+            if (relogio.minutes - 1 > 0) {
+                setRelogio(time => {
+                    return {
+                        hours: time.hours,
+                        minutes: time.minutes - 1,
+                        seconds: 59
+                    }
+                })
+            } else {
+                if (relogio.hours - 1 > 0) {
+                    setRelogio(time => {
+                        return {
+                            hours: time.hours - 1,
+                            minutes: 59,
+                            seconds: 59
+                        }
+                    })
+                } else {
+                    setRelogio(time => {
+                        return {
+                            hours: 0,
+                            minutes: 0,
+                            seconds: 0
+                        }
+                    })
+                    myPauseTime = true
+                    endTime()
+                }
+            }
+        }
+    }
+
+    // interval.current = setInterval(decreaseTime, 1000)
+    // console.log("COmeçei o intervalo")
+
+    useEffect(() => {
+        console.log(`My pausetime : ${myPauseTime}`)
+        if (!pauseTime && !myPauseTime) {
+            const intervall = setInterval(decreaseTime, 1000)
+            console.log("Começando")
+            
+            return () => clearInterval(intervall)
+        }
+    }, [relogio])
+
+    // useEffect(() => {
+    //     interval.current = setInterval(decreaseTime, 1000)
+    //     console.log("Começando")
+        
+    //     return () => clearInterval(interval.current)
+    // }, [relogio])
+
+    return (
+        <>
+            {hideMode ? (
+                <span className={styles.time}>--:--:--</span>
+            ) : (
+                <span className={styles.time}>{timeBeautifier(relogio.hours)}:{timeBeautifier(relogio.minutes)}:{timeBeautifier(relogio.seconds)}</span>
+            )}
+        </>
+    )
+}
+
+export default Relogio
