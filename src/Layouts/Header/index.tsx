@@ -19,9 +19,9 @@ function Header() {
                     </a>
                 </div>
             </div>
-            <div>
+            {/* <div>
                 <img style={{width: "50px"}} src="https://github.com/PHGodoyCosta.png" className={styles.profile_icon} alt="Imagem do perfil" />
-            </div>
+            </div> */}
         </header>
     );
 }

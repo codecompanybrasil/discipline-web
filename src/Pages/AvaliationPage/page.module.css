@@ -1,0 +1,49 @@
+.content {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+}
+
+.avaliation_area {
+    background-color: var(--dcp-gray-color);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 60%;
+}
+
+.menu {
+    background-color: var(--dcp-gray-color);
+    padding: 30px;
+    border-radius: 10px;
+    max-height: 500px;
+    position: sticky;
+    top: 20px;
+    /* max-width: 40%; */
+    min-width: 250px;
+}
+
+.time_area_option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.config_button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.hidetime_button {
+    background: transparent;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.time {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-left: 10px;
+}

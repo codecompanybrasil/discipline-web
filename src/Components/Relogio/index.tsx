@@ -36,7 +36,6 @@ function Relogio({hours=0, minutes=0, seconds=0, endTime = () => {}, pauseTime=f
     }
 
     const decreaseTime = () => {
-        console.log("Decreasinh")
         if (relogio.seconds - 1 > 0) {
             setRelogio(time => {
                 return {
@@ -82,10 +81,8 @@ function Relogio({hours=0, minutes=0, seconds=0, endTime = () => {}, pauseTime=f
     // console.log("COmeçei o intervalo")
 
     useEffect(() => {
-        console.log(`My pausetime : ${myPauseTime}`)
         if (!pauseTime && !myPauseTime) {
             const intervall = setInterval(decreaseTime, 1000)
-            console.log("Começando")
             
             return () => clearInterval(intervall)
         }

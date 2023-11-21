@@ -60,10 +60,10 @@ PageTemplate.Menu = ({selected = -1}: PageTemplateMenuProps) => {
     return (
         <div className="menu">
             <div className="menu-options">
-                <a href={selected === 0 ? "#" : "/home"} className={selected === 0 ? "menu-option-selected" : "menu-option"}>
+                {/* <a href={selected === 0 ? "#" : "/home"} className={selected === 0 ? "menu-option-selected" : "menu-option"}>
                     <Home color={selected === 0 ? "white" : "black"} style={{width: "30px", height: "30px"}} />
                     <span className="menu-option-title">Home</span>
-                </a>
+                </a> */}
                 <a href={selected === 1 ? "#" : "/explorar"} className={selected === 1 ? "menu-option-selected" : "menu-option"}>
                     <Explore color={selected === 1 ? "white" : "black"} style={{width: "30px", height: "30px"}} />
                     <span className="menu-option-title">Explorar</span>
