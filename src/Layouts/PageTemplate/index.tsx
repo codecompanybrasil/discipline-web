@@ -1,6 +1,6 @@
 import Header from "../Header"
-import { Home, Explore, Gym, Tarefa, Create } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon";
-import { PropsWithChildren } from "react";
+import { Home, Explore, Gym, Tarefa, Create, Menu } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon";
+import { CSSProperties, PropsWithChildren, useEffect } from "react";
 
 import './layout.css';
 
@@ -9,14 +9,20 @@ interface PageTemplateProps extends PropsWithChildren {
 }
 
 type PageTemplateMenuProps = {
-    selected?: number
+    selected?: number,
+    menuDisplay?: boolean,
+    handleMenuDisplay?: () => void
+}
+
+type PageTemplateHeader = {
+    handleMenuDisplay?: () => void
 }
 
 const PageTemplate = ({ children, backgroundColor = "auto" }: PageTemplateProps) => (
     <div className={["layout_container"].join(" ")} style={{backgroundColor: backgroundColor}} >{children}</div>
 )
 
-PageTemplate.Header = (props: any) => <Header />
+PageTemplate.Header = ({handleMenuDisplay = () => {}}: PageTemplateHeader) => <Header handleMenuDisplay={handleMenuDisplay} />
 
 PageTemplate.Footer = (props: any) => {
     return (
@@ -56,10 +62,14 @@ PageTemplate.Panel = (props: any) => {
     )
 }
 
-PageTemplate.Menu = ({selected = -1}: PageTemplateMenuProps) => {
+PageTemplate.Menu = ({selected = -1, menuDisplay = window.innerWidth > 800 ? true : false, handleMenuDisplay}: PageTemplateMenuProps) => {
+
     return (
-        <div className="menu">
+        <div className="menu" style={{display: menuDisplay ? "flex" : "none"}}>
             <div className="menu-options">
+                <div className={"button-menu-phone"} onClick={handleMenuDisplay}>
+                    <Menu color="black" />
+                </div>
                 {/* <a href={selected === 0 ? "#" : "/home"} className={selected === 0 ? "menu-option-selected" : "menu-option"}>
                     <Home color={selected === 0 ? "white" : "black"} style={{width: "30px", height: "30px"}} />
                     <span className="menu-option-title">Home</span>

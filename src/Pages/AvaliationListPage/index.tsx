@@ -24,6 +24,7 @@ function AvaliationListPage() {
     const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null) //Váriavel que diz qual Query tem o menu aberto
     const [resData, setResData] = useState<{ data: Avaliation[], total: number }>()
     const [itemsPerPage, setItemsPerPage] = useState<number>(10)
+    const [menuDisplay, setMenuDisplay] = useState<boolean>(window.innerWidth > 800 ? true : false)
     const [loading, setLoading] = useState<boolean>(true)
     const [urlAPI, setUrlAPI] = useState<URL>(new URL(`${process.env.REACT_APP_API_URL}/avaliations?offset=0&limit=${itemsPerPage}`))
 
@@ -44,8 +45,12 @@ function AvaliationListPage() {
     useEffect(() => fetchingAPI(), [])
 
     useEffect(() => {
-        console.log("Data changed", resData)
-    }, [resData])
+        console.log(urlAPI)
+    }, [urlAPI])
+
+    // useEffect(() => {
+    //     console.log("Data changed", resData)
+    // }, [resData])
 
     const handleSetActiveMenuIndex = (menu: number | null) => {
         setActiveMenuIndex(menu)
@@ -63,12 +68,16 @@ function AvaliationListPage() {
         fetchingAPI()
     }
 
+    const handleMenuDisplay = () => {
+        setMenuDisplay(menu => !menu)
+    }
+
     return (
         <>
             <PageTemplate>
-                <PageTemplate.Header />
+                <PageTemplate.Header handleMenuDisplay={handleMenuDisplay} />
                 <PageTemplate.Panel>
-                    <PageTemplate.Menu selected={3} />
+                    <PageTemplate.Menu selected={3} menuDisplay={menuDisplay} handleMenuDisplay={handleMenuDisplay} />
                     <PageTemplate.Content>
                         <Filters handleUrlAPI={handleUrlAPI} urlAPI={urlAPI} />
                         <div className={styles.avaliacao}>

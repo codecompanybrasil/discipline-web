@@ -6,11 +6,15 @@ import { DcpIconButton } from "@codecompanybrasil/discipline-core";
 
 import styles from "./component.module.css";
 
-function Header() {
+type HeaderProps = {
+    handleMenuDisplay: () => void
+}
+
+function Header({handleMenuDisplay}: HeaderProps) {
     return (
         <header className={`${styles.header}`}>
             <div className="d-flex col-md-3 justify-content-md-start col-xl-2">
-                <DcpIconButton className={styles.button_show_header}>
+                <DcpIconButton className={styles.button_show_header} onClick={handleMenuDisplay}>
                     <Menu color="white" />
                 </DcpIconButton>
                 <div className={styles.dcp_icon_area}>

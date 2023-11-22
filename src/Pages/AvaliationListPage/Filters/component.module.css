@@ -85,6 +85,21 @@
     gap: 10px;
 }
 
+.badge {
+    /* padding: 5px; */
+    border-radius: 50%;
+    color: var(--dcp-white-color);
+    background-color: var(--dcp-danger-color);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;;
+    right: 2px;
+    bottom: 2px;
+}
+
 @media only screen and (max-width: 600px) {
     .filter_area {
         width: 95%;

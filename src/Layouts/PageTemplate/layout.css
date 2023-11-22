@@ -97,13 +97,31 @@ footer.dev_info a {
     flex-grow: 1;
 }
 
+.button-menu-phone {
+    display: none;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
 @media only screen and (max-width: 800px) {
     .menu {
-        display: none;
+        width: 90%;
+        max-width: 400px;
+        height: 100%;
+        position: absolute;
+        z-index: 2;
+        background-color: #c3c3c3fa;
+        top: 0;
+        left: 0;
     }
 
     .content_container {
         margin-top: 15px;
+    }
+
+    .button-menu-phone {
+        display: block;
     }
 }
 

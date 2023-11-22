@@ -80,3 +80,13 @@
 .status_circle_nao_feito {
     background-color: #989898;
 }
+
+@media only screen and (max-width: 650px) {
+    .status_area {
+        display: none;
+    }
+
+    .query_inline {
+        font-size: 1.5em;
+    }
+}

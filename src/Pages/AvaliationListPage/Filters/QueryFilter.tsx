@@ -16,21 +16,23 @@ interface InputDateProps {
 type InputStatusProps = {
     name: string,
     placeholder?: string,
-    onChange: (status: boolean) => void
+    onChange: (status: string) => void
 }
 
 const InputStatus = ({name, placeholder, onChange}: InputStatusProps) => {
-    const [status, setStatus] = useState<boolean>(false)
+    const [status, setStatus] = useState<string>("")
 
     useEffect(() => {
+        console.log(`STATUS ALTERADO: ${status}`)
         onChange(status)
     }, [status])
 
     return (
         <>
-            <select className={styles.input_status_options} onChange={(event => setStatus(event.target.value === "Feito" ? true : false))} >
+            <select className={styles.input_status_options} onChange={(event => setStatus(event.target.value))} >
+                <option value="">Não preenchido</option>
                 <option value="Feito">Feito</option>
-                <option value="Não Feito">Não Feito</option>
+                <option value="Nao Feito">Não Feito</option>
             </select>
         </>
     )
@@ -50,7 +52,14 @@ const InputDate = ({ name, placeholder, onChange }: InputDateProps) => {
             name={name}
             id={name}
             value={date}
-            onChange={(event) => setDate(dayjs(event.target.value).format('YYYY'))}
+            onChange={(event) => setDate(() => {
+                const data = dayjs(event.target.value).format('YYYY')
+                if (data === "Invalid Date") {
+                    return ""
+                } else {
+                    return data
+                }
+            })}
             placeholder={placeholder} />
     );
 }
@@ -171,7 +180,7 @@ const QueryFilter = ({ title, typeInput, placeholder, handleData }: QueryFiltroP
                 <InputStatus 
                     name={title}
                     placeholder="Status"
-                    onChange={(status: boolean) => setStatusInputValue(String(status))}
+                    onChange={(status: string) => setStatusInputValue(status)}
                 />
             )}
 

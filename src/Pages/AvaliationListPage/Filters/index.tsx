@@ -14,15 +14,24 @@ type FilterProps = {
 const Filters = ({ handleUrlAPI, urlAPI }: FilterProps) => {
     const [searchData, setSearchData] = useState<string>("")
     const [anoData, setAnoData] = useState<number>(0)
-    const [statusData, setStatusData] = useState<boolean>(false)
+    const [statusData, setStatusData] = useState<string>("")
+    const [badgeValue, setBadgeValue] = useState<string[]>([])
     const [isOpened, setIsOpened] = useState<boolean>(false)
     // const [statusData, setStatusData] = useState<boolean>()
 
     useEffect(() => {
+        console.log(badgeValue)
+    }, [badgeValue])
+
+    useEffect(() => {
         if (searchData) {
             urlAPI.searchParams.set("title", searchData)
+            if (!badgeValue.includes("title")) {
+                setBadgeValue(badge => [...badge, "title"])
+            }
         } else {
             urlAPI.searchParams.delete("title")
+            setBadgeValue(badge => badge.filter(item => item !== "title"))
         }
         handleUrlAPI(urlAPI)
     }, [searchData]);
@@ -30,17 +39,25 @@ const Filters = ({ handleUrlAPI, urlAPI }: FilterProps) => {
     useEffect(() => {
         if (anoData) {
             urlAPI.searchParams.set("year", String(anoData))
+            if (!badgeValue.includes("year")) {
+                setBadgeValue(badge => [...badge, "year"])
+            }
         } else {
             urlAPI.searchParams.delete("year")
+            setBadgeValue(badge => badge.filter(item => item !== "year"))
         }
         handleUrlAPI(urlAPI)
     }, [anoData]);
 
     useEffect(() => {
         if (statusData) {
-            urlAPI.searchParams.set("status", String(statusData))
+            urlAPI.searchParams.set("status", statusData)
+            if (!badgeValue.includes("status")) {
+                setBadgeValue(badge => [...badge, "status"])
+            }
         } else {
             urlAPI.searchParams.delete("status")
+            setBadgeValue(badge => badge.filter(item => item !== "status"))
         }
     }, [statusData])
 
@@ -54,7 +71,7 @@ const Filters = ({ handleUrlAPI, urlAPI }: FilterProps) => {
         setAnoData(d)
     }
 
-    const handleStatusData = (d: boolean) => {
+    const handleStatusData = (d: string) => {
         setStatusData(d)
     }
 
@@ -72,8 +89,11 @@ const Filters = ({ handleUrlAPI, urlAPI }: FilterProps) => {
                     <DcpIconButton color="accent">
                         <Lupa color="black" />
                     </DcpIconButton>
-                    <DcpIconButton href='/' onClick={() => setIsOpened((prev) => !prev)}>
+                    <DcpIconButton href='/' onClick={() => setIsOpened((prev) => !prev)} style={{position: "relative"}}>
                         <Filter />
+                        {badgeValue.length > 0 && (
+                            <div className={styles.badge}>{badgeValue.length}</div>
+                        )}
                     </DcpIconButton>
                     {/* <DcpButton 
                         text="Pesquisar"
