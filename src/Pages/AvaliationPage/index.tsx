@@ -3,7 +3,7 @@ import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 
 import { DcpButton, DcpIcon } from "@codecompanybrasil/discipline-core";
 
-import { Cronometro, Exclamation, Options } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon";
+import { Cronometro, Exclamation, Settings } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon";
 import { Bar } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpBar";
 
 import styles from './page.module.css'
@@ -28,6 +28,7 @@ function AvaliationPage() {
     const [timeDisplayMode, setTimeDisplayMode] = useState<boolean>(false)
     const [relogioPauseTime, setRelogioPauseTime] = useState<boolean>(true)
     const [warningDisplay, setWarningDisplay] = useState<boolean>(true)
+    const [finalWarningDisplay, setFinalWarningDisplay] = useState<boolean>(false)
     const [provaStatus, setProvaStatus] = useState<boolean>(true)
     const [userName, setUserName] = useState<string>("")
     const [userEmail, setUserEmail] = useState<string>("")
@@ -130,16 +131,27 @@ function AvaliationPage() {
         setRelogioPauseTime(false)
     }
 
-    const description = `Essa prova é uma corrida contra o tempo! Ao iniciar, um cronômetro será acionado, e você terá um período determinado para demonstrar seu conhecimento. Fique atento(a) e use cada segundo sabiamente. 📚<br/><br/>Encare cada desafio com seriedade. Sua dedicação reflete diretamente no seu desempenho. ✨<br/></br>Estamos confiantes de que você pode brilhar! Boa sorte! 🍀`
+    const handleEndTimeClock = () => {
+        setFinalWarningDisplay(true)
+    }
+
+    const descriptionWarning = `Essa prova é uma corrida contra o tempo! Ao iniciar, um cronômetro será acionado, e você terá um período determinado para demonstrar seu conhecimento. Fique atento(a) e use cada segundo sabiamente. 📚<br/><br/>Encare cada desafio com seriedade. Sua dedicação reflete diretamente no seu desempenho. ✨<br/></br>Estamos confiantes de que você pode brilhar! Boa sorte! 🍀`
+
+    const descriptionFinalWarning = `Infelizmente, o tempo para a prova expirou! 😢<br/><br/> Não desanime, pois cada desafio é uma oportunidade de aprendizado e crescimento. Com certeza você fará melhor na próxima vez 🚀 <br/><br/> Não se esqueça de conferir seus resultados. Clique no botão abaixo e descubra onde você errou! 🔍`
 
     return (
         <PageTemplate backgroundColor="var(--dcp-primary-color)" >
             <PageTemplate.Header />
             <PageTemplate.Panel>
                 <PageTemplate.Content>
-                    <Warning description={description} displayMode={warningDisplay} isClose={false}>
+                    <Warning description={descriptionWarning} displayMode={warningDisplay} isClose={false}>
                         <div className="w-100 d-flex justify-content-center mt-4">
                             <DcpButton text="Começar avaliação" color="accent" onClick={handleStartAvaliacao} />
+                        </div>
+                    </Warning>
+                    <Warning description={descriptionFinalWarning} displayMode={finalWarningDisplay} isClose={false}>
+                        <div className="w-100 d-flex justify-content-center mt-4">
+                            <DcpButton text="Ver resultados" color="accent" onClick={() => {setFinalWarningDisplay(false);submitAvaliation()}} />
                         </div>
                     </Warning>
                     <div className={styles.content}>
@@ -178,7 +190,7 @@ function AvaliationPage() {
                         <div className={styles.menu}>
                             <div className={styles.menu_fixed}>
                                 <div className={styles.config_button}>
-                                    <Options color="black" />
+                                    <Settings color="black" />
                                 </div>
                                 <div className="d-flex align-items-center mb-3">
                                     <button className={styles.hidetime_button} onClick={handleHideTimeClick}>
@@ -187,8 +199,8 @@ function AvaliationPage() {
                                 </div>
                                 <div className={styles.time_area}>
                                     <div className="d-flex align-items-start mb-2">
-                                        <Cronometro color="black" style={{width: "40px", height: "40px"}}/>
-                                        <Relogio hours={5} pauseTime={relogioPauseTime} hideMode={timeDisplayMode} />
+                                        <Cronometro color="black" width={40} height={40} />
+                                        <Relogio seconds={5} pauseTime={relogioPauseTime} hideMode={timeDisplayMode} endTime={handleEndTimeClock} />
                                         {/* <span className={styles.time}>05:00:00</span> */}
                                     </div>
                                     <div className="d-flex justify-content-center">

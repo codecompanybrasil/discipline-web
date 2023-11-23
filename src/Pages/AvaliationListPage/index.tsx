@@ -90,7 +90,7 @@ function AvaliationListPage() {
                                         key={index}
                                         index={index}
                                         hash={item.hash}
-                                        link={`/avaliacoes/${item.hash}`}
+                                        link={`/avaliacoes/settings/${item.hash}`}
                                         title={item.title}
                                         iconPath={item.icon}
                                         iconAlt={`Logo da Prova - ${item.title}`}

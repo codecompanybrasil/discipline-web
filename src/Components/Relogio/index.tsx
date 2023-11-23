@@ -18,6 +18,7 @@ type RelogioCounterProps = {
 
 function Relogio({hours=0, minutes=0, seconds=0, endTime = () => {}, pauseTime=false, hideMode=false}: RelogioProps) {
     const myPauseTime = useRef<boolean>(false)
+    const endOfTime = useRef<boolean>(false)
     // const interval = useRef<NodeJS.Timer>()
 
     const [relogio, setRelogio] = useState<RelogioCounterProps>({
@@ -82,20 +83,20 @@ function Relogio({hours=0, minutes=0, seconds=0, endTime = () => {}, pauseTime=f
 
     useEffect(() => {
         console.log("Checking clock")
-        alert("clicked")
-        if (!myPauseTime.current) {
-            alert("Check OK")
+        //alert("clicked")
+        if (!pauseTime && !myPauseTime.current) {
+            //alert("Check OK")
             const intervall = setInterval(decreaseTime, 1000)
             
             return () => clearInterval(intervall)
         }
     }, [relogio, myPauseTime, pauseTime])
 
-    useEffect(() => {
-        myPauseTime.current = pauseTime
-        console.log(pauseTime)
-        console.log(myPauseTime)
-    }, [pauseTime])
+    // useEffect(() => {
+    //     myPauseTime.current = pauseTime
+    //     console.log(`Alteração em PauseTime: ${pauseTime}`)
+    //     console.log(`Alteração em myPauseTime: ${myPauseTime.current}`)
+    // }, [pauseTime])
 
     // useEffect(() => {
     //     interval.current = setInterval(decreaseTime, 1000)

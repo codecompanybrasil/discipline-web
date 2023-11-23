@@ -51,7 +51,9 @@ function AvaliationIntermediate() {
                                     ))}
                                 </div>
                                 <div className="w-100 mt-5 d-flex justify-content-center">
-                                    <DcpButton color="success" text="Começar avaliacao" fontSize="1em" />
+                                    <a href={`/avaliacoes/${hash}`}>
+                                        <DcpButton color="success" text="Avançar" fontSize="1em" />
+                                    </a>
                                 </div>
                             </div>
                             <div className={styles.settings_area}>

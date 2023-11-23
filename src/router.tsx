@@ -33,7 +33,7 @@ export default createBrowserRouter([
         },
     },
     {
-        path: "/avalicoes/settings/:hash",
+        path: "/avaliacoes/settings/:hash",
         element: <AvaliationIntermediate />
     },
     {
