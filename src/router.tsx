@@ -4,6 +4,7 @@ import { Navigate} from "react-router-dom";
 import AvaliationListPage from "./Pages/AvaliationListPage";
 import AvaliationPage from "./Pages/AvaliationPage";
 import AvaliationIntermediate from "./Pages/AvaliationIntermediate";
+import TestPage from "./Pages/TestPage";
 import Page404 from "./Pages/404";
 
 
@@ -35,6 +36,10 @@ export default createBrowserRouter([
     {
         path: "/avaliacoes/settings/:hash",
         element: <AvaliationIntermediate />
+    },
+    {
+        path: "/test",
+        element: <TestPage />
     },
     {
         path: "*",

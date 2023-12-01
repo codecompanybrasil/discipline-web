@@ -27,6 +27,7 @@
     min-width: 300px;
     max-width: 350px;
     margin-right: 10px;
+    margin-top: 20px;
     padding: 10px;
 }
 
@@ -55,4 +56,16 @@
     margin-top: 10px;
     display: inline-block;
     
+}
+
+.description_area {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    gap: 10px;
+}
+
+.logo_prova {
+    max-width: 100px;
+    border-radius: 5px;
 }

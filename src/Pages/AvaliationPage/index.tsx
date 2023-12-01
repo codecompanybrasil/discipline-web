@@ -28,6 +28,7 @@ function AvaliationPage() {
     const [timeDisplayMode, setTimeDisplayMode] = useState<boolean>(false)
     const [relogioPauseTime, setRelogioPauseTime] = useState<boolean>(true)
     const [warningDisplay, setWarningDisplay] = useState<boolean>(true)
+    const [correctionPage, setCorrectionPage] = useState<boolean>(false)
     const [finalWarningDisplay, setFinalWarningDisplay] = useState<boolean>(false)
     const [provaStatus, setProvaStatus] = useState<boolean>(true)
     const [userName, setUserName] = useState<string>("")
