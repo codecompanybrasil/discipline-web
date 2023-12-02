@@ -95,6 +95,7 @@ function AvaliationIntermediate() {
                                 </div>
                             </div>
                             <div className={styles.settings_area}>
+                                <h1>{data ? data.title : ""}</h1>
                                 {/* <div className={styles.menu}>
                                     <img src="https://api.discipline.app.br/uploads/institutions/9f262b25-2486-4507-87d2-fb7145a6ebb0.png" alt="Imagem prova" className={styles.image_avaliation} />
                                     <p>
