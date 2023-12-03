@@ -15,6 +15,7 @@ import Relogio from "@/Components/Relogio";
 import PageTemplate from "@/Layouts/PageTemplate";
 import dayjs from "dayjs";
 import { Warning } from "@/Components/Warning";
+import WarningTemplate from "@/Layouts/WarningTemplate";
 
 function AvaliationPage() {
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ function AvaliationPage() {
 
     const [page, setPage] = useState<string>("avaliacao")
     const [correctionMode, setCorrectionMode] = useState<boolean>(false)
+    const [resultadosDisplay, setResultadosDisplay] = useState<boolean>(false)
     const [avaliationData, setDisciplineData] = useState<any>()
     const [resultsQuestions, setResultsQuestions] = useState<any[]>([])
     const [timeDisplayMode, setTimeDisplayMode] = useState<boolean>(false)
@@ -96,31 +98,32 @@ function AvaliationPage() {
     }
 
     const submitAvaliation = () => {
-        if (!userName || !userEmail) {
-            alert('O Preenchimento dos campos nome e e-mail é obrigatório');
-            return;
-        }
+        // if (!userName || !userEmail) {
+        //     alert('O Preenchimento dos campos nome e e-mail é obrigatório');
+        //     return;
+        // }
 
-        fetch(`${process.env.REACT_APP_API_URL}/user-avaliation`, {
-            method: "post",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+        // fetch(`${process.env.REACT_APP_API_URL}/user-avaliation`, {
+        //     method: "post",
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
 
-            //make sure to serialize your JSON body
-            body: JSON.stringify({
-                user_name: userName,
-                user_email: userEmail,
-                avaliation_hash: hash,
-                avaliation_date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-                number_of_questions: avaliationData?.sections[0]?.items?.length,
-                correct_answers: numQuestoesCertas.current,
-                not_answered_questions: numQuestoesNaoRespondidas.current,
-            })
-        }).catch(err => console.log(err));
+        //     //make sure to serialize your JSON body
+        //     body: JSON.stringify({
+        //         user_name: userName,
+        //         user_email: userEmail,
+        //         avaliation_hash: hash,
+        //         avaliation_date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        //         number_of_questions: avaliationData?.sections[0]?.items?.length,
+        //         correct_answers: numQuestoesCertas.current,
+        //         not_answered_questions: numQuestoesNaoRespondidas.current,
+        //     })
+        // }).catch(err => console.log(err));
 
         handleSetPage("resultado")
+        setResultadosDisplay(true)
     }
 
     const handleHideTimeClick = () => {
@@ -134,6 +137,10 @@ function AvaliationPage() {
 
     const handleEndTimeClock = () => {
         setFinalWarningDisplay(true)
+    }
+
+    const handleResultadosDisplay = () => {
+        setResultadosDisplay(resultados => !resultados)
     }
 
     const descriptionWarning = `Essa prova é uma corrida contra o tempo! Ao iniciar, um cronômetro será acionado, e você terá um período determinado para demonstrar seu conhecimento. Fique atento(a) e use cada segundo sabiamente. 📚<br/><br/>Encare cada desafio com seriedade. Sua dedicação reflete diretamente no seu desempenho. ✨<br/></br>Estamos confiantes de que você pode brilhar! Boa sorte! 🍀`
@@ -155,9 +162,20 @@ function AvaliationPage() {
                             <DcpButton text="Ver resultados" color="accent" onClick={() => {setFinalWarningDisplay(false);submitAvaliation()}} />
                         </div>
                     </Warning>
+                    <div style={{ display: (page !== "resultado") ? "none" : "block" }}>
+                        <WarningTemplate displayMode={resultadosDisplay} isClose={false}>
+                            <ResultPanel
+                                numberCorrect={numQuestoesCertas.current}
+                                numberQuestions={avaliationData?.sections[0]?.items?.length}
+                                numberNonResponse={numQuestoesNaoRespondidas.current}
+                                setPage={handleSetPage}
+                                setResultadosDisplay={handleResultadosDisplay}
+                                resultQuestion={resultsQuestions} />
+                        </WarningTemplate>
+                    </div>
                     <div className={styles.content}>
                         <div className={styles.avaliation_area}>
-                            {page !== "resultado" && (
+                            {/* {page !== "resultado" && ( */}
                                 <AvaliationHeader
                                     title={avaliationData?.title}
                                     correctionMode={correctionMode}
@@ -165,11 +183,11 @@ function AvaliationPage() {
                                     userEmail={userEmail}
                                     onChangeUserName={(value) => setUserName(value)}
                                     onChangeUserEmail={(value) => setUserEmail(value)} />
-                            )}
+                            {/* )} */}
 
                             {avaliationData && (
                                 <>
-                                    <div style={{ display: (page === "resultado") ? "none" : "block" }}>
+                                    <div> {/*style={{ display: (page === "resultado") ? "none" : "block" }}*/}
                                         <AvaliationForm
                                             handleResult={handleResult}
                                             correctionMode={correctionMode}
@@ -177,14 +195,14 @@ function AvaliationPage() {
                                             userAnswers={resultsQuestions} />
                                     </div>
 
-                                    <div style={{ display: (page !== "resultado") ? "none" : "block" }}>
+                                    {/* <div style={{ display: (page !== "resultado") ? "none" : "block" }}>
                                         <ResultPanel
                                             numberCorrect={numQuestoesCertas.current}
                                             numberQuestions={avaliationData?.sections[0]?.items?.length}
                                             numberNonResponse={numQuestoesNaoRespondidas.current}
                                             setPage={handleSetPage}
                                             resultQuestion={resultsQuestions} />
-                                    </div>
+                                    </div> */}
                                 </>
                             )}
                         </div>

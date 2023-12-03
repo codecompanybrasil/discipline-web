@@ -18,6 +18,12 @@
     position: relative;
 }
 
+.page_footer {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 footer.dev_info {
     position: fixed;
     bottom: 0;

@@ -26,7 +26,7 @@ PageTemplate.Header = ({handleMenuDisplay = () => {}}: PageTemplateHeader) => <H
 
 PageTemplate.Footer = (props: any) => {
     return (
-        <footer className="page_footer row">
+        <footer className="page_footer">
             <div className="col-12">
                 {props.children}
             </div>

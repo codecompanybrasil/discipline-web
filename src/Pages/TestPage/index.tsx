@@ -3,12 +3,13 @@ import ResultPanel from "../AvaliationPage/Result"
 
 function TestPage() {
     const testFunc = (value: string) => {
+        alert(1)
         return value
     }
 
     return (
         <>
-            <WarningTemplate>
+            <WarningTemplate isClose={false}>
                 <ResultPanel
                     numberCorrect={10}
                     numberQuestions={90}

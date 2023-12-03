@@ -9,10 +9,19 @@ type ResultProps = {
     numberCorrect: number,
     numberNonResponse?: number,
     resultQuestion: any[],
-    setPage: (page: string) => void
+    setPage: (page: string) => void,
+    setResultadosDisplay?: () => void
 }
 
-function ResultPanel({ numberCorrect, numberQuestions, setPage, numberNonResponse = 0 }: ResultProps) {
+function ResultPanel({ numberCorrect, numberQuestions, setPage, setResultadosDisplay, numberNonResponse = 0 }: ResultProps) {
+
+    const onVerCorrecaoClick = () => {
+        setPage('correcao')
+        if (setResultadosDisplay) {
+            setResultadosDisplay()
+        }
+    }
+
     return (
         <>
             <div className="row">
@@ -33,21 +42,21 @@ function ResultPanel({ numberCorrect, numberQuestions, setPage, numberNonRespons
             </div>
 
             <div className="row my-3">
-                <div className="col-12 col-sm-6 col-md-4 offset-md-2 d-flex justify-content-center">
+                <a href="/" className="col-12 col-sm-6 col-md-4 offset-md-2 d-flex justify-content-center">
                     <DcpButton
                         className='border-lg'
                         color='accent'
-                        text="Voltar"
-                        slotstart={<DcpIcon.Back />}
-                        onClick={() => setPage("avaliacao")} />
-                </div>
+                        text="Inicio"
+                        slotstart={<DcpIcon.Home color="white" />} />
+                    {/*onClick={() => setPage("avaliacao")} /> */}
+                </a>
 
                 <div className="col-12 mt-2 mt-sm-0 col-sm-6 col-md-4 d-flex justify-content-center">
                     <DcpButton
                         className='border-lg'
                         color='accent'
                         text="Ver Correção"
-                        onClick={() => setPage("correcao")}
+                        onClick={onVerCorrecaoClick}
                         slotstart={<img src={teacherIcon}
                             alt="Icon do professor"
                             width={30}

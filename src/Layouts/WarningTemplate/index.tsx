@@ -13,17 +13,16 @@ function WarningTemplate({displayMode = true, isClose = true, children}: Warning
     const [closeState, setCloseState] = useState<boolean>(displayMode)
 
     useEffect(() => {
+        console.log(`Mudando DisplayMode: ${displayMode}`)
         setCloseState(displayMode)
     }, [displayMode])
 
     useEffect(() => {
         console.log("closeState changed")
         if (closeState) {
-            window.document.body.style.overflowY = "hidden"
-            window.document.body.style.overflowX = "hidden"
+            window.document.body.style.overflow = "hidden"
         } else {
-            window.document.body.style.overflowY = "auto"
-            window.document.body.style.overflowX = "auto"
+            window.document.body.style.overflow = "auto"
         }
     }, [closeState])
 
