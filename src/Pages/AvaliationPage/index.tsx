@@ -28,8 +28,8 @@ function AvaliationPage() {
     const [avaliationData, setDisciplineData] = useState<any>()
     const [resultsQuestions, setResultsQuestions] = useState<any[]>([])
     const [timeDisplayMode, setTimeDisplayMode] = useState<boolean>(false)
-    const [relogioPauseTime, setRelogioPauseTime] = useState<boolean>(true)
-    const [warningDisplay, setWarningDisplay] = useState<boolean>(true)
+    const [relogioPauseTime, setRelogioPauseTime] = useState<boolean>(sessionStorage.getItem(`avaliation_${hash}_status`) ? false : true)
+    const [warningDisplay, setWarningDisplay] = useState<boolean>(sessionStorage.getItem(`avaliation_${hash}_status`) ? false : true)
     const [correctionPage, setCorrectionPage] = useState<boolean>(false)
     const [progressBarValue, setProgressBarValue] = useState<number>(0)
     const [finalWarningDisplay, setFinalWarningDisplay] = useState<boolean>(false)
@@ -48,6 +48,13 @@ function AvaliationPage() {
     }, [data])
 
     useEffect(() => {
+        if (resultadosDisplay) {
+            localStorage.setItem(`avaliation_${hash}_status`, "feito")
+        }
+    }, [resultadosDisplay])
+
+    useEffect(() => {
+        calculatingProgressBar()
         const questions = avaliationData?.sections[0]?.items
 
         if (typeof window !== "undefined" && questions) {
@@ -99,7 +106,6 @@ function AvaliationPage() {
 
             return newState
         })
-        calculatingProgressBar()
         // console.log(resultsQuestions)
         // console.log(result)
     }
@@ -150,7 +156,7 @@ function AvaliationPage() {
         }
         setWarningDisplay(warning => !warning)
         setRelogioPauseTime(false)
-        localStorage.setItem(`avaliation_${hash}_status`, "andamento")
+        sessionStorage.setItem(`avaliation_${hash}_status`, "andamento")
     }
 
     const handleEndTimeClock = () => {

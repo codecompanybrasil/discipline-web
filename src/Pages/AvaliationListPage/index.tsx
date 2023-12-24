@@ -90,7 +90,7 @@ function AvaliationListPage() {
                                         key={index}
                                         index={index}
                                         hash={item.hash}
-                                        link={`/avaliacoes/settings/${item.hash}`}
+                                        link={localStorage.getItem(`avaliation_${item.hash}_status`) || sessionStorage.getItem(`avaliation_${item.hash}_status`) ? `/avaliacoes/${item.hash}` : `/avaliacoes/settings/${item.hash}`}//`/avaliacoes/settings/${item.hash}`
                                         title={item.title}
                                         iconPath={item.icon}
                                         iconAlt={`Logo da Prova - ${item.title}`}

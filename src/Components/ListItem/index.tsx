@@ -61,6 +61,7 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
     const onClickMenu = () => {
         if (menuStyle.display === "none") {
             setMenuStyle({ display: "block" })
+
             setActiveMenuIndex(index)
         } else {
             setMenuStyle({ display: "none" })

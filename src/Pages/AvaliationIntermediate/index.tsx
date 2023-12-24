@@ -1,6 +1,6 @@
 import PageTemplate from "@/Layouts/PageTemplate"
 import { DcpButton, DcpSelect } from "@codecompanybrasil/discipline-core"
-import { Taskboard } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon"
+import { Taskboard, Gym } from "@codecompanybrasil/discipline-core/dist/esm/components/DcpIcon"
 import { useState, useEffect } from "react"
 import { DetalhesAvaliacao } from "@/Types/Api"
 import { useParams } from "react-router-dom"
@@ -112,10 +112,12 @@ function AvaliationIntermediate() {
                                 <div className={styles.menu}>
                                     <DcpSelect slotstart={<Taskboard />} options={[
                                         {
-                                            text: "Avaliações"
+                                            text: "Avaliações",
+                                            slotStart: (<Taskboard />)
                                         },
                                         {
-                                            text: "Treinamento"
+                                            text: "Treinamento",
+                                            slotStart: (<Gym />)
                                         }
                                     ]} color="accent" />
                                     <div className="mt-2">

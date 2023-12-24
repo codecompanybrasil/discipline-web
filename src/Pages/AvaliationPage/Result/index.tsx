@@ -23,12 +23,6 @@ function ResultPanel({ numberCorrect, numberQuestions, setPage, setResultadosDis
         }
     }
 
-    useEffect(() => {
-        if (hashAvaliation) {
-            localStorage.setItem(`avaliation_${hashAvaliation}_status`, "feito")
-        }
-    }, [])
-
     return (
         <>
             <div className="row">
