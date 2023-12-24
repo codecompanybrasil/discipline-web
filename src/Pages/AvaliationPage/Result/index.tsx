@@ -10,10 +10,11 @@ type ResultProps = {
     numberNonResponse?: number,
     resultQuestion: any[],
     setPage: (page: string) => void,
-    setResultadosDisplay?: () => void
+    setResultadosDisplay?: () => void,
+    hashAvaliation?: string
 }
 
-function ResultPanel({ numberCorrect, numberQuestions, setPage, setResultadosDisplay, numberNonResponse = 0 }: ResultProps) {
+function ResultPanel({ numberCorrect, numberQuestions, setPage, setResultadosDisplay, hashAvaliation, numberNonResponse = 0 }: ResultProps) {
 
     const onVerCorrecaoClick = () => {
         setPage('correcao')
@@ -21,6 +22,12 @@ function ResultPanel({ numberCorrect, numberQuestions, setPage, setResultadosDis
             setResultadosDisplay()
         }
     }
+
+    useEffect(() => {
+        if (hashAvaliation) {
+            localStorage.setItem(`avaliation_${hashAvaliation}_status`, "feito")
+        }
+    }, [])
 
     return (
         <>

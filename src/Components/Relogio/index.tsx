@@ -82,7 +82,7 @@ function Relogio({hours=0, minutes=0, seconds=0, endTime = () => {}, pauseTime=f
     // console.log("COmeçei o intervalo")
 
     useEffect(() => {
-        console.log("Checking clock")
+        // console.log("Checking clock")
         //alert("clicked")
         if (!pauseTime && !myPauseTime.current) {
             //alert("Check OK")
@@ -91,19 +91,6 @@ function Relogio({hours=0, minutes=0, seconds=0, endTime = () => {}, pauseTime=f
             return () => clearInterval(intervall)
         }
     }, [relogio, myPauseTime, pauseTime])
-
-    // useEffect(() => {
-    //     myPauseTime.current = pauseTime
-    //     console.log(`Alteração em PauseTime: ${pauseTime}`)
-    //     console.log(`Alteração em myPauseTime: ${myPauseTime.current}`)
-    // }, [pauseTime])
-
-    // useEffect(() => {
-    //     interval.current = setInterval(decreaseTime, 1000)
-    //     console.log("Começando")
-        
-    //     return () => clearInterval(interval.current)
-    // }, [relogio])
 
     return (
         <>

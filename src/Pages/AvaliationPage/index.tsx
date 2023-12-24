@@ -31,16 +31,20 @@ function AvaliationPage() {
     const [relogioPauseTime, setRelogioPauseTime] = useState<boolean>(true)
     const [warningDisplay, setWarningDisplay] = useState<boolean>(true)
     const [correctionPage, setCorrectionPage] = useState<boolean>(false)
+    const [progressBarValue, setProgressBarValue] = useState<number>(0)
     const [finalWarningDisplay, setFinalWarningDisplay] = useState<boolean>(false)
-    const [provaStatus, setProvaStatus] = useState<boolean>(true)
     const [userName, setUserName] = useState<string>("")
     const [userEmail, setUserEmail] = useState<string>("")
+
+    const inputEmailRef = useRef<HTMLInputElement>(null)
+    const inputUserRef = useRef<HTMLInputElement>(null)
 
     let numQuestoesNaoRespondidas = useRef<number>(0)
     let numQuestoesCertas = useRef<number>(0)
 
     useEffect(() => {
         setDisciplineData(data)
+        
     }, [data])
 
     useEffect(() => {
@@ -95,6 +99,9 @@ function AvaliationPage() {
 
             return newState
         })
+        calculatingProgressBar()
+        // console.log(resultsQuestions)
+        // console.log(result)
     }
 
     const submitAvaliation = () => {
@@ -121,7 +128,8 @@ function AvaliationPage() {
         //         not_answered_questions: numQuestoesNaoRespondidas.current,
         //     })
         // }).catch(err => console.log(err));
-
+        localStorage.setItem("user_name", userName)
+        localStorage.setItem("user_email", userEmail)
         handleSetPage("resultado")
         setResultadosDisplay(true)
     }
@@ -131,8 +139,18 @@ function AvaliationPage() {
     }
 
     const handleStartAvaliacao = () => {
+        if (localStorage.getItem("user_name")) {
+            setUserName(String(localStorage.getItem("user_name")))
+            if (inputUserRef.current) {
+                inputUserRef.current.value = String(localStorage.getItem("user_name"))
+            }
+            if (inputEmailRef.current) {
+                inputEmailRef.current.value = String(localStorage.getItem("user_email"))
+            }
+        }
         setWarningDisplay(warning => !warning)
         setRelogioPauseTime(false)
+        localStorage.setItem(`avaliation_${hash}_status`, "andamento")
     }
 
     const handleEndTimeClock = () => {
@@ -141,6 +159,13 @@ function AvaliationPage() {
 
     const handleResultadosDisplay = () => {
         setResultadosDisplay(resultados => !resultados)
+    }
+
+    const calculatingProgressBar = () => {
+        const quantidadeQuestoes = avaliationData?.sections[0]?.items?.length
+        const quantidadeRespondidas = resultsQuestions.length
+
+        setProgressBarValue(Number((quantidadeRespondidas * 100 / quantidadeQuestoes).toFixed(2)))
     }
 
     const descriptionWarning = `Essa prova é uma corrida contra o tempo! Ao iniciar, um cronômetro será acionado, e você terá um período determinado para demonstrar seu conhecimento. Fique atento(a) e use cada segundo sabiamente. 📚<br/><br/>Encare cada desafio com seriedade. Sua dedicação reflete diretamente no seu desempenho. ✨<br/></br>Estamos confiantes de que você pode brilhar! Boa sorte! 🍀`
@@ -170,7 +195,8 @@ function AvaliationPage() {
                                 numberNonResponse={numQuestoesNaoRespondidas.current}
                                 setPage={handleSetPage}
                                 setResultadosDisplay={handleResultadosDisplay}
-                                resultQuestion={resultsQuestions} />
+                                resultQuestion={resultsQuestions}
+                                hashAvaliation={hash} />
                         </WarningTemplate>
                     </div>
                     <div className={styles.content}>
@@ -181,6 +207,8 @@ function AvaliationPage() {
                                     correctionMode={correctionMode}
                                     userName={userName}
                                     userEmail={userEmail}
+                                    inputUserRef={inputUserRef}
+                                    inputEmailRef={inputEmailRef}
                                     onChangeUserName={(value) => setUserName(value)}
                                     onChangeUserEmail={(value) => setUserEmail(value)} />
                             {/* )} */}
@@ -219,16 +247,20 @@ function AvaliationPage() {
                                 <div className={styles.time_area}>
                                     <div className="d-flex align-items-start mb-2">
                                         <Cronometro color="black" width={40} height={40} />
-                                        <Relogio seconds={5} pauseTime={relogioPauseTime} hideMode={timeDisplayMode} endTime={handleEndTimeClock} />
+                                        <Relogio hours={5} pauseTime={relogioPauseTime} hideMode={timeDisplayMode} endTime={handleEndTimeClock} />
                                         {/* <span className={styles.time}>05:00:00</span> */}
                                     </div>
-                                    <div className="d-flex justify-content-center">
-                                        <Bar percent={90} colorProgress="var(--dcp-accent-color)" colorNoProgress="var(--dcp-black-color)" width="100px" spanPercent />
+                                    <div className="d-flex justify-content-center flex-column">
+                                        <Bar percent={progressBarValue} colorProgress="var(--dcp-accent-color)" colorNoProgress="var(--dcp-black-color)" width="150px" spanPercent />
                                         <div className={styles.time_area_options} style={{display: "block"}}>
-                                            <div className={styles.time_area_option} onClick={handleStartAvaliacao}>
+                                            {/* <div className={styles.time_area_option} onClick={handleStartAvaliacao}>
                                                 <Exclamation />
                                                 <span>Ver avisos</span>
-                                            </div>
+                                            </div> */}
+                                            <p>
+                                            <h3 className={styles.informations_title}>Questões:</h3>
+                                                <span>{""}</span>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -237,7 +269,7 @@ function AvaliationPage() {
                     </div>
                     <PageTemplate.Footer>
                         {page === "avaliacao" && !correctionMode && (
-                            <div className="row my-3">
+                            <div className="d-flex my-3">
                                 <div className="col-12 col-sm-6 col-md-4 offset-md-2 col-lg-3 offset-lg-3 d-flex justify-content-center">
                                     <DcpButton
                                         className='border-lg full-width'

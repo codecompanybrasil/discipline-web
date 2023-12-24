@@ -81,6 +81,10 @@
     background-color: #989898;
 }
 
+.status_circle_andamento {
+    background-color: var(--dcp-accent-color);
+}
+
 @media only screen and (max-width: 650px) {
     .status_area {
         display: none;

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import styles from "./component.module.css"
 
 type AvaliationHeaderProps = {
@@ -6,11 +6,13 @@ type AvaliationHeaderProps = {
     title: string,
     userName?: string,
     userEmail?: string,
+    inputEmailRef: React.RefObject<HTMLInputElement>,
+    inputUserRef: React.RefObject<HTMLInputElement>
     onChangeUserName: (value: string) => void
     onChangeUserEmail: (value: string) => void
 }
 
-function AvaliationHeader({ correctionMode = false, title, userName, userEmail, onChangeUserName, onChangeUserEmail }: AvaliationHeaderProps) {
+function AvaliationHeader({ correctionMode = false, title, userName, userEmail, onChangeUserName, onChangeUserEmail, inputEmailRef, inputUserRef }: AvaliationHeaderProps) {
     return (
         <>
             {correctionMode ? (
@@ -46,6 +48,7 @@ function AvaliationHeader({ correctionMode = false, title, userName, userEmail, 
                                 id="name"
                                 name="name"
                                 className="full-width"
+                                ref={inputUserRef}
                                 onChange={(event) => onChangeUserName(event.target.value)} />
                         </div>
                     </div>
@@ -62,6 +65,7 @@ function AvaliationHeader({ correctionMode = false, title, userName, userEmail, 
                                 id="email"
                                 name="email"
                                 className="full-width"
+                                ref={inputEmailRef}
                                 onChange={(event) => onChangeUserEmail(event.target.value)} />
                         </div>
                     </div>

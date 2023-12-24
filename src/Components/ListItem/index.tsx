@@ -23,14 +23,15 @@ type ListItemProps = {
 }
 
 type AvaliacaoStatusProps = {
-    isDone?: boolean
+    mode?: string
 }
 
-const AvaliacaoStatus = ({isDone=false}: AvaliacaoStatusProps) => {
+const AvaliacaoStatus = ({mode="não feito"}: AvaliacaoStatusProps) => {
+
     return (
         <div className={styles.status_area}>
-            <div className={`${styles.status_circle} ${isDone ? styles.status_circle_feito : styles.status_circle_nao_feito}`}></div>
-            <span>{isDone ? "Feito" : "Não feito"}</span>
+            <div className={`${styles.status_circle} ${mode === "feito" ? styles.status_circle_feito : mode === "não feito" ? styles.status_circle_nao_feito : styles.status_circle_andamento}`}></div>
+            <span>{mode === "feito" ? "Feito" : mode === "não feito" ? "Não feito" : "Andamento"}</span>
         </div>
     )
 }
@@ -39,12 +40,23 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
     const navigate = useNavigate();
 
     const [menuStyle, setMenuStyle] = useState<CSSProperties>({ display: "none" })
+    const [avaliationStatus, setAvaliationStatus] = useState<string>("não feito")
 
     useEffect(() => {
         if (activeMenuIndex !== index) {
             setMenuStyle({ display: "none" })
         }
     }, [activeMenuIndex])
+
+    useEffect(() => {
+        const statusLocal = localStorage.getItem(`avaliation_${hash}_status`)
+        const statusStorage = sessionStorage.getItem(`avaliation_${hash}_status`)
+        if (statusLocal) {
+            setAvaliationStatus(String(statusLocal))
+        } else if (statusStorage) {
+            setAvaliationStatus(String(statusStorage))
+        }
+    }, [])
 
     const onClickMenu = () => {
         if (menuStyle.display === "none") {
@@ -73,7 +85,7 @@ const ListItem = ({ hash, title, iconPath, iconAlt, link, setActiveMenuIndex, in
                 </a>
 
                 <div className="btn-group">
-                    <AvaliacaoStatus />
+                    <AvaliacaoStatus mode={avaliationStatus} />
                     <DcpIconButton title='Resolver avaliação' onClick={() => navigate(`/avaliacoes/${hash}`)}>
                         <Enter />
                     </DcpIconButton>
