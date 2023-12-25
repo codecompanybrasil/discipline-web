@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import DOMPurify from 'dompurify'
 
 import QuestionOption from "../QuestionOption";
@@ -66,12 +67,19 @@ type QuestionProps = {
     handleResult?: (result: any) => void
 }
 
+type resultQuestionProps = {
+    q_hash: string,
+    answer: string
+}
+
 function Question({
     indexQuestion = 0,
     question,
     correctionMode = false,
     markedAlternative,
     handleResult }: QuestionProps) {
+
+    const { hash } = useParams()
 
     const sendAnswerUpdate = (optionHash: string) => {
         if (handleResult !== undefined) {

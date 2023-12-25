@@ -25,19 +25,7 @@ function AvaliationIntermediate() {
 
     const optionsBook: OptionsBookProps[] = [
         {
-            text: "Caderno de prova A"
-        },
-        {
-            text: "Caderno de prova B"
-        },
-        {
-            text: "Caderno de prova C"
-        },
-        {
-            text: "Caderno de prova D"
-        },
-        {
-            text: "Caderno de prova E"
+            text: "Inglês"
         }
     ]
 
@@ -114,10 +102,6 @@ function AvaliationIntermediate() {
                                         {
                                             text: "Avaliações",
                                             slotStart: (<Taskboard />)
-                                        },
-                                        {
-                                            text: "Treinamento",
-                                            slotStart: (<Gym />)
                                         }
                                     ]} color="accent" />
                                     <div className="mt-2">

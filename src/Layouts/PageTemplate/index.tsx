@@ -73,7 +73,7 @@ PageTemplate.Menu = ({selected = -1, menuDisplay = window.innerWidth > 800 ? tru
                 {/* <a href={selected === 0 ? "#" : "/home"} className={selected === 0 ? "menu-option-selected" : "menu-option"}>
                     <Home color={selected === 0 ? "white" : "black"} style={{width: "30px", height: "30px"}} />
                     <span className="menu-option-title">Home</span>
-                </a> */}
+                </a> 
                 <a href={selected === 1 ? "#" : "/explorar"} className={selected === 1 ? "menu-option-selected" : "menu-option"}>
                     <Explore color={selected === 1 ? "white" : "black"} style={{width: "30px", height: "30px"}} />
                     <span className="menu-option-title">Explorar</span>
@@ -81,15 +81,15 @@ PageTemplate.Menu = ({selected = -1, menuDisplay = window.innerWidth > 800 ? tru
                 <a href={selected === 2 ? "#" : "/treinamento"} className={selected === 2 ? "menu-option-selected" : "menu-option"}>
                     <Gym color={selected === 2 ? "white" : "black"} style={{width: "30px", height: "30px"}} />
                     <span className="menu-option-title">Treinamento</span>
-                </a>
+                </a> */}
                 <a href={selected === 3 ? "#" : "/avaliacoes"} className={selected === 3 ? "menu-option-selected" : "menu-option"}>
                     <Tarefa color={selected === 3 ? "white" : "black"} style={{width: "30px", height: "30px"}} />
                     <span className="menu-option-title">Avaliações</span>
                 </a>
-                <a href={selected === 4 ? "#" : "/criar"} className={selected === 4 ? "menu-option-selected" : "menu-option"}>
+                {/* <a href={selected === 4 ? "#" : "/criar"} className={selected === 4 ? "menu-option-selected" : "menu-option"}>
                     <Create color={selected === 4 ? "white" : "black"} style={{width: "30px", height: "30px"}} />
                     <span className="menu-option-title">Criar</span>
-                </a>
+                </a> */}
             </div>
             <div className="version-area">
                 <p>Versão 1.0.1</p>

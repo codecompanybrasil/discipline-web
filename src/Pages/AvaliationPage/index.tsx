@@ -55,6 +55,10 @@ function AvaliationPage() {
 
     useEffect(() => {
         calculatingProgressBar()
+        console.log(resultsQuestions)
+        if (String(resultsQuestions) !== "") {
+            sessionStorage.setItem(`avaliation_${hash}_questions`, JSON.stringify(resultsQuestions))
+        }
         const questions = avaliationData?.sections[0]?.items
 
         if (typeof window !== "undefined" && questions) {
@@ -75,6 +79,14 @@ function AvaliationPage() {
             numQuestoesCertas.current = numCertas
         }
     }, [resultsQuestions])
+
+    useEffect(() => {
+        if (sessionStorage.getItem(`avaliation_${hash}_questions`)) {
+            console.log("Avaliação está em andamento")
+            const respostasSalvas = JSON.parse(sessionStorage.getItem(`avaliation_${hash}_questions`) ?? "")
+            setResultsQuestions(respostasSalvas)
+        }  
+    }, [])
 
     const handleSetPage = (page: string) => {
         if (page === "correcao") {
@@ -171,7 +183,8 @@ function AvaliationPage() {
         const quantidadeQuestoes = avaliationData?.sections[0]?.items?.length
         const quantidadeRespondidas = resultsQuestions.length
 
-        setProgressBarValue(Number((quantidadeRespondidas * 100 / quantidadeQuestoes).toFixed(2)))
+        const progress = Number((quantidadeRespondidas * 100 / quantidadeQuestoes).toFixed(2))
+        setProgressBarValue(Number.isNaN(progress) ? 0 : progress)
     }
 
     const descriptionWarning = `Essa prova é uma corrida contra o tempo! Ao iniciar, um cronômetro será acionado, e você terá um período determinado para demonstrar seu conhecimento. Fique atento(a) e use cada segundo sabiamente. 📚<br/><br/>Encare cada desafio com seriedade. Sua dedicação reflete diretamente no seu desempenho. ✨<br/></br>Estamos confiantes de que você pode brilhar! Boa sorte! 🍀`
@@ -298,7 +311,7 @@ function AvaliationPage() {
                         )}
 
                         {page === "avaliacao" && correctionMode && (
-                            <div className="row my-3">
+                            <div className="row my-3" style={{marginRight: "0", marginLeft: "0"}}>
                                 <div className="col-12 col-sm-6 col-md-4 offset-md-2 col-lg-3 offset-lg-3 d-flex justify-content-center">
                                     <DcpButton
                                         className='border-lg full-width'
