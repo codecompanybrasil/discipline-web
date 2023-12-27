@@ -26,6 +26,7 @@ function Warning({displayMode = true, isClose = true, description, children}: Wa
     const [closeState, setCloseState] = useState<boolean>(displayMode)
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         setCloseState(displayMode)
     }, [displayMode])
 
@@ -34,6 +35,7 @@ function Warning({displayMode = true, isClose = true, description, children}: Wa
         if (closeState) {
             window.document.body.style.overflowY = "hidden"
             window.document.body.style.overflowX = "hidden"
+            console.log("Voltando ao inicio da página")
         } else {
             window.document.body.style.overflowY = "auto"
             window.document.body.style.overflowX = "auto"

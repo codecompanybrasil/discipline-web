@@ -148,8 +148,12 @@ function AvaliationPage() {
         // }).catch(err => console.log(err));
         localStorage.setItem("user_name", userName)
         localStorage.setItem("user_email", userEmail)
-        handleSetPage("resultado")
+        if (relogioPauseTime === false) {
+            setRelogioPauseTime(true)
+        }
+        console.log(`Avaliation Submited | ResultadosDisplay: ${resultadosDisplay}, FinalWarn: ${finalWarningDisplay}`)
         setResultadosDisplay(true)
+        handleSetPage("resultado")
     }
 
     const handleHideTimeClick = () => {
@@ -255,9 +259,9 @@ function AvaliationPage() {
                         </div>
                         <div className={styles.menu}>
                             <div className={styles.menu_fixed}>
-                                <div className={styles.config_button}>
+                                {/* <div className={styles.config_button}>
                                     <Settings color="black" />
-                                </div>
+                                </div> */}
                                 <div className="d-flex align-items-center mb-3">
                                     <button className={styles.hidetime_button} onClick={handleHideTimeClick}>
                                         {timeDisplayMode ? "Mostrar tempo" : "Esconder tempo"}
@@ -276,10 +280,23 @@ function AvaliationPage() {
                                                 <Exclamation />
                                                 <span>Ver avisos</span>
                                             </div> */}
-                                            <p>
-                                            <h3 className={styles.informations_title}>Questões:</h3>
-                                                <span>{""}</span>
-                                            </p>
+                                        </div>
+                                        <div className="mt-4">
+                                            <DcpButton
+                                                className='border-lg full-width'
+                                                color='accent'
+                                                text="Voltar"
+                                                slotstart={<DcpIcon.Back />}
+                                                onClick={() => navigate(-1)}
+                                            />
+                                        </div>
+                                        <div className="mt-2">
+                                            <DcpButton
+                                                className='border-lg full-width'
+                                                color='success'
+                                                text="Finalizar Avaliação"
+                                                onClick={submitAvaliation}
+                                            />
                                         </div>
                                     </div>
                                 </div>

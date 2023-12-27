@@ -15,6 +15,7 @@ function WarningTemplate({displayMode = true, isClose = true, children}: Warning
     useEffect(() => {
         console.log(`Mudando DisplayMode: ${displayMode}`)
         setCloseState(displayMode)
+        return () => window.scrollTo(0, 0)
     }, [displayMode])
 
     useEffect(() => {

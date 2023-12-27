@@ -57,8 +57,13 @@ function QuestionOption({
                 setWrong(false)
             }
         } else {
+            console.log(`Marked: ${markedAlternative} | Sou select: ${selected}`)
             if (markedAlternative) {
-                setSelected(markedAlternative === data.hash)
+                setSelected(select => {
+                    return markedAlternative === data.hash
+                })
+            } else {
+                setSelected(select => select ? false : select)
             }
 
             setCorrect(false)
@@ -77,7 +82,9 @@ function QuestionOption({
                         wrong ? styles.wrong : undefined
                     ].join(" ")}
                     onClick={() => toggleSelect()}
-                    disabled={correctionMode}>
+                    disabled={correctionMode}
+                    style={{cursor: correctionMode ? "default" : "pointer"}}
+                    >
                     {optionLetters[index]}
                 </button>
             </div>
